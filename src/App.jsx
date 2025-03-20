@@ -1,7 +1,12 @@
 import React from "react";
+import Sidebar from "./components/Sidebar/Sidebar.jsx";
 
 const App = () => {
-  return <div>Gemini Clone</div>;
+  return (
+      <main>
+        <Sidebar/>
+      </main>
+  )
 };
 
 export default App;
