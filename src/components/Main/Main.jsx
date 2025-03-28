@@ -22,6 +22,15 @@ function Main() {
           <h3>your personal AI assistant.</h3>
         </div>
       </section>
+      <section className="w-full flex justify-center mb-10">
+        <div className="w-[720px] mx-auto p-5 bg-[#f0f4f9] text-lg rounded-full">
+          <input
+            type="text"
+            className="w-full bg-transparent outline-0 border-none"
+            placeholder="Enter a prompt here"
+          />
+        </div>
+      </section>
     </div>
   );
 }
