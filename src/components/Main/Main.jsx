@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { assets } from "../../assets/assets.js";
+import { getResponse } from "../../config/gemini.js";
 import "./Main.css";
 
 function Main() {
   const [prompt, setPrompt] = useState("");
+
+  const generateContent = async () => {
+    console.log(await getResponse(prompt));
+  };
 
   return (
     <div className="w-full p-5 px-7">
@@ -33,7 +38,9 @@ function Main() {
             className="w-full bg-transparent outline-0 border-none"
             placeholder="Enter a prompt here"
           />
-          <img src={assets.send_icon} width="24px" alt="send icon" />
+          <span onClick={generateContent}>
+            <img src={assets.send_icon} width="24px" alt="send icon" />
+          </span>
         </div>
       </section>
     </div>
