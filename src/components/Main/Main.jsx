@@ -5,9 +5,11 @@ import "./Main.css";
 
 function Main() {
   const [prompt, setPrompt] = useState("");
+  const [content, setContent] = useState("");
 
   const generateContent = async () => {
-    console.log(await getResponse(prompt));
+    const response = await getResponse(prompt);
+    setContent(response);
   };
 
   return (
@@ -21,15 +23,21 @@ function Main() {
           alt="user icon"
         />
       </nav>
-      <section className="h-[calc(100vh-192px)] flex justify-center items-center">
-        <div className="mx-auto text-5xl font-bold text-center text-[#c4c7c5]">
-          <h3>
-            Meet <span className="lumina-text">Lumina</span>,
-          </h3>
-          <h3>your personal AI assistant.</h3>
-        </div>
+      <section className="my-7 h-[calc(100vh-240px)] flex justify-center items-center">
+        {content.length > 0 ? (
+          <div className="text-[#333] w-[800px] h-full overflow-scroll">
+            <p>{content}</p>
+          </div>
+        ) : (
+          <div className="mx-auto text-5xl font-bold text-center text-[#c4c7c5]">
+            <h3>
+              Meet <span className="lumina-text">Lumina</span>,
+            </h3>
+            <h3>your personal AI assistant.</h3>
+          </div>
+        )}
       </section>
-      <section className="w-full flex justify-center mb-10">
+      <section className="w-full flex justify-center">
         <div className="w-[800px] p-5 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
           <input
             type="text"
