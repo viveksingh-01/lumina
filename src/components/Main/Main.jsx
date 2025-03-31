@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { assets } from "../../assets/assets.js";
 import "./Main.css";
 
 function Main() {
+  const [prompt, setPrompt] = useState("");
+
   return (
     <div className="w-full p-5 px-7">
       <nav className="flex justify-between">
@@ -14,7 +16,7 @@ function Main() {
           alt="user icon"
         />
       </nav>
-      <section className="h-120 flex justify-center items-center">
+      <section className="h-[calc(100vh-192px)] flex justify-center items-center">
         <div className="mx-auto text-5xl font-bold text-center text-[#c4c7c5]">
           <h3>
             Meet <span className="lumina-text">Lumina</span>,
@@ -23,12 +25,15 @@ function Main() {
         </div>
       </section>
       <section className="w-full flex justify-center mb-10">
-        <div className="w-[720px] mx-auto p-5 bg-[#f0f4f9] text-lg rounded-full">
+        <div className="w-[800px] p-5 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
           <input
             type="text"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
             className="w-full bg-transparent outline-0 border-none"
             placeholder="Enter a prompt here"
           />
+          <img src={assets.send_icon} width="24px" alt="send icon" />
         </div>
       </section>
     </div>
