@@ -38,8 +38,13 @@ function Main() {
             className="w-full bg-transparent outline-0 border-none"
             placeholder="Enter a prompt here"
           />
-          <span onClick={generateContent}>
-            <img src={assets.send_icon} width="24px" alt="send icon" />
+          <span onClick={generateContent} className="cursor-pointer">
+            <img
+              src={assets.send_icon}
+              className="opacity-65 hover:opacity-100"
+              width="32px"
+              alt="send icon"
+            />
           </span>
         </div>
       </section>
