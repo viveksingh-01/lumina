@@ -13,6 +13,12 @@ function Main() {
     setContent(response);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode == 13) {
+      generateContent(prompt);
+    }
+  };
+
   return (
     <div className="w-full p-5 px-7">
       <nav className="flex justify-between">
@@ -44,6 +50,7 @@ function Main() {
             type="text"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="w-full bg-transparent outline-0 border-none"
             placeholder="Enter a prompt here"
           />
