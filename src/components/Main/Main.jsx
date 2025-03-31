@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { assets } from "../../assets/assets.js";
 import { getResponse } from "../../config/gemini.js";
 import "./Main.css";
@@ -26,7 +27,7 @@ function Main() {
       <section className="my-7 h-[calc(100vh-240px)] flex justify-center items-center">
         {content.length > 0 ? (
           <div className="text-[#333] w-[800px] h-full overflow-scroll">
-            <p>{content}</p>
+            <ReactMarkdown>{content}</ReactMarkdown>
           </div>
         ) : (
           <div className="mx-auto text-5xl font-bold text-center text-[#c4c7c5]">
