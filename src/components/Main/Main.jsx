@@ -7,10 +7,12 @@ import "./Main.css";
 function Main() {
   const [prompt, setPrompt] = useState("");
   const [content, setContent] = useState("");
+  const [promptToDisplay, setPromptToDisplay] = useState("");
 
   const generateContent = async () => {
     const response = await getResponse(prompt);
     setContent(response);
+    setPromptToDisplay(prompt);
   };
 
   const handleKeyDown = (e) => {
@@ -35,7 +37,7 @@ function Main() {
           <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">
             <div className="flex justify-end">
               <span className="p-4 bg-[#444] text-white rounded-4xl rounded-br-sm">
-                {prompt}
+                {promptToDisplay}
               </span>
             </div>
             <br />
