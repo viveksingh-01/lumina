@@ -32,7 +32,10 @@ function Main() {
       </nav>
       <section className="my-7 h-[calc(100vh-240px)] flex justify-center items-center">
         {content.length > 0 ? (
-          <div className="text-[#333] w-[800px] h-full overflow-scroll">
+          <div className="py-3 text-[#333] w-[800px] h-full overflow-scroll">
+            <span className="p-4 my-3 bg-[#444] text-white">{prompt}</span>
+            <br />
+            <br />
             <ReactMarkdown>{content}</ReactMarkdown>
           </div>
         ) : (
