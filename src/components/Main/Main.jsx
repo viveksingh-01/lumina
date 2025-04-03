@@ -8,11 +8,13 @@ function Main() {
   const [prompt, setPrompt] = useState("");
   const [content, setContent] = useState("");
   const [promptToDisplay, setPromptToDisplay] = useState("");
+  const [showContent, setShowContent] = useState(false);
 
   const generateContent = async () => {
+    setPromptToDisplay(prompt);
+    setShowContent(true);
     const response = await getResponse(prompt);
     setContent(response);
-    setPromptToDisplay(prompt);
   };
 
   const handleKeyDown = (e) => {
@@ -33,7 +35,7 @@ function Main() {
         />
       </nav>
       <section className="my-7 h-[calc(100vh-240px)] flex justify-center items-center">
-        {content.length > 0 ? (
+        {showContent ? (
           <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">
             <div className="flex justify-end">
               <span className="p-4 bg-[#444] text-white rounded-4xl rounded-br-sm">
