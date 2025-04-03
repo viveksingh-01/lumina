@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Sidebar.css";
 import { assets } from "/src/assets/assets.js";
 
-function Sidebar() {
+function Sidebar({ prompts }) {
+  useEffect(() => {
+    console.log(prompts);
+  });
   return (
     <aside className="p-4 min-h-screen inline-flex flex-col justify-between bg-[#f0f4f9]">
       <div className="top">
@@ -13,10 +16,12 @@ function Sidebar() {
         />
         <div className="my-5 flex flex-col">
           <p className="mb-2">Recent</p>
-          <div className="min-w-3xs p-4 flex justify-start gap-3 rounded-full text-[#282828] hover:bg-[#e2e6eb] cursor-pointer">
-            <img src={assets.message_icon} alt="message icon" />
-            <p>React vs Angular?</p>
-          </div>
+          {prompts.map((prompt) => (
+            <div className="min-w-3xs p-3 flex justify-start gap-2 rounded-full text-[#282828] hover:bg-[#e2e6eb] cursor-pointer">
+              <img src={assets.message_icon} alt="message icon" />
+              <p>{prompt}</p>
+            </div>
+          ))}
         </div>
       </div>
     </aside>

@@ -4,7 +4,7 @@ import { assets } from "../../assets/assets.js";
 import { getResponse } from "../../config/gemini.js";
 import "./Main.css";
 
-function Main() {
+function Main({ setPromptHistory }) {
   const [prompt, setPrompt] = useState("");
   const [content, setContent] = useState("");
   const [promptToDisplay, setPromptToDisplay] = useState("");
@@ -13,6 +13,7 @@ function Main() {
   const generateContent = async () => {
     setPromptToDisplay(prompt);
     setShowContent(true);
+    setPromptHistory((prompts) => [...prompts, prompt]);
     const response = await getResponse(prompt);
     setContent(response);
   };
