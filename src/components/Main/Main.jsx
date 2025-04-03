@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { assets } from "../../assets/assets.js";
 import { getResponse } from "../../config/gemini.js";
 import "./Main.css";
 
-function Main({ setPromptHistory }) {
+function Main({ currentPrompt, setPromptHistory }) {
   const [prompt, setPrompt] = useState("");
   const [content, setContent] = useState("");
   const [promptToDisplay, setPromptToDisplay] = useState("");
   const [showContent, setShowContent] = useState(false);
+
+  /**
+   * Sets the currentPrompt (prop passed from App) as the input-prompt's value
+   */
+  useEffect(() => {
+    setPrompt(currentPrompt);
+  }, [currentPrompt]);
 
   const generateContent = async () => {
     setPromptToDisplay(prompt);
