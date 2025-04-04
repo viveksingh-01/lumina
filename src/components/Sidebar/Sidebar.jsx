@@ -13,8 +13,9 @@ function Sidebar({ promptHistory, setCurrentPrompt }) {
         />
         <div className="my-5 flex flex-col">
           <p className="mb-2">Recent</p>
-          {promptHistory.map((prompt) => (
+          {promptHistory.map((prompt, index) => (
             <div
+              key={index}
               onClick={() => setCurrentPrompt(prompt)}
               className="min-w-3xs p-3 flex justify-start gap-2 rounded-full text-[#282828] hover:bg-[#e2e6eb] cursor-pointer"
             >
