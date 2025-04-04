@@ -17,10 +17,10 @@ function Main({ currentPrompt, setPromptHistory }) {
     setPrompt(currentPrompt);
   }, [currentPrompt]);
 
-  const generateContent = async () => {
+  const generateContent = async (prompt) => {
     setPromptToDisplay(prompt);
     setShowContent(true);
-    setPromptHistory((prompts) => [...prompts, prompt]);
+    updatePromptHistory(prompt);
     const response = await getResponse(prompt);
     setContent(response);
   };
@@ -29,6 +29,10 @@ function Main({ currentPrompt, setPromptHistory }) {
     if (e.keyCode == 13) {
       generateContent(prompt);
     }
+  };
+
+  const updatePromptHistory = (prompt) => {
+    setPromptHistory((prompts) => [...prompts, prompt]);
   };
 
   return (
@@ -72,7 +76,10 @@ function Main({ currentPrompt, setPromptHistory }) {
             className="w-full bg-transparent outline-0 border-none"
             placeholder="Enter a prompt here"
           />
-          <span onClick={generateContent} className="cursor-pointer">
+          <span
+            onClick={() => generateContent(prompt)}
+            className="cursor-pointer"
+          >
             <img
               src={assets.send_icon}
               className="opacity-65 hover:opacity-100"
