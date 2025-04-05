@@ -11,10 +11,12 @@ function Main({ currentPrompt, setPromptHistory }) {
   const [showContent, setShowContent] = useState(false);
 
   /**
-   * Sets the currentPrompt (prop passed from App) as the input-prompt's value
+   * Generates content based on the currentPrompt (prop passed from App component)
    */
   useEffect(() => {
-    setPrompt(currentPrompt);
+    if (currentPrompt) {
+      generateContent(currentPrompt);
+    }
   }, [currentPrompt]);
 
   const generateContent = async (prompt) => {
