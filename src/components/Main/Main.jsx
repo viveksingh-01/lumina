@@ -19,23 +19,27 @@ function Main({ currentPrompt, setPromptHistory }) {
     }
   }, [currentPrompt]);
 
-  const generateContent = async (prompt) => {
+  async function generateContent(prompt) {
     setPromptToDisplay(prompt);
     setShowContent(true);
-    updatePromptHistory(prompt);
     const response = await getResponse(prompt);
     setContent(response);
-  };
+  }
 
-  const handleKeyDown = (e) => {
+  function handleContentGeneration(prompt) {
+    generateContent(prompt);
+    updatePromptHistory(prompt);
+  }
+
+  function handleKeyDown(e) {
     if (e.keyCode == 13) {
-      generateContent(prompt);
+      handleContentGeneration(prompt);
     }
-  };
+  }
 
-  const updatePromptHistory = (prompt) => {
+  function updatePromptHistory(prompt) {
     setPromptHistory((prompts) => [...prompts, prompt]);
-  };
+  }
 
   return (
     <div className="w-full p-5 px-7">
@@ -79,7 +83,7 @@ function Main({ currentPrompt, setPromptHistory }) {
             placeholder="Enter a prompt here"
           />
           <span
-            onClick={() => generateContent(prompt)}
+            onClick={() => handleContentGeneration(prompt)}
             className="cursor-pointer"
           >
             <img
