@@ -43,7 +43,7 @@ function Main({ currentPrompt, setPromptHistory }) {
   }
 
   function clearPromptInput() {
-    setPrompt(null);
+    setPrompt("");
   }
 
   return (
