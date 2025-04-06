@@ -29,6 +29,7 @@ function Main({ currentPrompt, setPromptHistory }) {
   function handleContentGeneration(prompt) {
     generateContent(prompt);
     updatePromptHistory(prompt);
+    clearPromptInput();
   }
 
   function handleKeyDown(e) {
@@ -39,6 +40,10 @@ function Main({ currentPrompt, setPromptHistory }) {
 
   function updatePromptHistory(prompt) {
     setPromptHistory((prompts) => [...prompts, prompt]);
+  }
+
+  function clearPromptInput() {
+    setPrompt(null);
   }
 
   return (
