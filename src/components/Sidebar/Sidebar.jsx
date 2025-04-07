@@ -11,19 +11,21 @@ function Sidebar({ promptHistory, setCurrentPrompt }) {
           className="cursor-pointer"
           alt="menu icon"
         />
-        <div className="my-5 flex flex-col">
-          <p className="mb-2">Recent</p>
-          {promptHistory.map((prompt, index) => (
-            <div
-              key={index}
-              onClick={() => setCurrentPrompt(prompt)}
-              className="min-w-3xs p-3 flex justify-start gap-2 rounded-full text-[#282828] hover:bg-[#e2e6eb] cursor-pointer"
-            >
-              <img src={assets.message_icon} alt="message icon" />
-              <p>{prompt}</p>
-            </div>
-          ))}
-        </div>
+        {promptHistory.length > 0 && (
+          <div className="my-5 flex flex-col">
+            <p className="mb-2">Recent</p>
+            {promptHistory.map((prompt, index) => (
+              <div
+                key={index}
+                onClick={() => setCurrentPrompt(prompt)}
+                className="min-w-3xs p-3 flex justify-start gap-2 rounded-full text-[#282828] hover:bg-[#e2e6eb] cursor-pointer"
+              >
+                <img src={assets.message_icon} alt="message icon" />
+                <p>{prompt}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </aside>
   );
