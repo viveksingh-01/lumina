@@ -13,7 +13,11 @@ const App = () => {
         promptHistory={promptHistory}
         setCurrentPrompt={setCurrentPrompt}
       />
-      <Main currentPrompt={currentPrompt} setPromptHistory={setPromptHistory} />
+      <Main
+        currentPrompt={currentPrompt}
+        promptHistory={promptHistory}
+        setPromptHistory={setPromptHistory}
+      />
     </main>
   );
 };

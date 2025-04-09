@@ -5,7 +5,7 @@ import { getResponse } from "../../config/gemini.js";
 import PromptInput from "../PromptInput/PromptInput.jsx";
 import "./Main.css";
 
-function Main({ currentPrompt, setPromptHistory }) {
+function Main({ currentPrompt, promptHistory, setPromptHistory }) {
   const [content, setContent] = useState("");
   const [promptToDisplay, setPromptToDisplay] = useState("");
   const [showContent, setShowContent] = useState(false);
@@ -66,7 +66,10 @@ function Main({ currentPrompt, setPromptHistory }) {
           </div>
         )}
       </section>
-      <PromptInput handleContentGeneration={handleContentGeneration} />
+      <PromptInput
+        handleContentGeneration={handleContentGeneration}
+        promptHistory={promptHistory}
+      />
     </div>
   );
 }

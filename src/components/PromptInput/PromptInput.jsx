@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { assets } from "../../assets/assets";
 
-export default function PromptInput({ handleContentGeneration }) {
+let promptIndex = 0;
+
+function PromptInput({ handleContentGeneration, promptHistory }) {
   const [prompt, setPrompt] = useState("");
+
+  useEffect(() => {
+    if (promptHistory.length > 0) {
+      promptIndex = promptHistory.length;
+    }
+  }, [promptHistory]);
 
   function handleInputSubmission() {
     handleContentGeneration(prompt);
@@ -12,6 +20,15 @@ export default function PromptInput({ handleContentGeneration }) {
   function handleKeyDown(e) {
     if (e.keyCode == 13) {
       handleInputSubmission();
+    } else if (e.keyCode == 38) {
+      traversePromptsUp();
+    }
+  }
+
+  function traversePromptsUp() {
+    if (promptHistory.length > 1) {
+      promptIndex -= 1;
+      setPrompt(promptHistory[promptIndex]);
     }
   }
 
@@ -42,3 +59,5 @@ export default function PromptInput({ handleContentGeneration }) {
     </section>
   );
 }
+
+export default PromptInput;
