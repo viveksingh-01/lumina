@@ -21,19 +21,15 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
     if (e.keyCode == 13) {
       handleInputSubmission();
     } else if (e.keyCode == 38) {
-      traversePrompts(true);
+      traversePrompts(-1); // negative value indicates previous input traversal
     } else if (e.keyCode == 40) {
-      traversePrompts(false);
+      traversePrompts(1); // positive value indicates next input traversal
     }
   }
 
-  function traversePrompts(prev) {
+  function traversePrompts(changeInIndexValue) {
     if (promptHistory.length > 1) {
-      if (prev) {
-        promptIndex -= 1;
-      } else {
-        promptIndex += 1;
-      }
+      promptIndex += changeInIndexValue;
       setPrompt(promptHistory[promptIndex]);
     }
   }
