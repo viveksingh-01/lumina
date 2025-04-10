@@ -21,13 +21,19 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
     if (e.keyCode == 13) {
       handleInputSubmission();
     } else if (e.keyCode == 38) {
-      traversePromptsUp();
+      traversePrompts(true);
+    } else if (e.keyCode == 40) {
+      traversePrompts(false);
     }
   }
 
-  function traversePromptsUp() {
+  function traversePrompts(prev) {
     if (promptHistory.length > 1) {
-      promptIndex -= 1;
+      if (prev) {
+        promptIndex -= 1;
+      } else {
+        promptIndex += 1;
+      }
       setPrompt(promptHistory[promptIndex]);
     }
   }
