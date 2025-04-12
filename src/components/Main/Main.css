@@ -3,3 +3,11 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.content p {
+    margin-bottom: 1rem;
+}
+
+.content ul > li {
+    margin-bottom: 1rem;
+}

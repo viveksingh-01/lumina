@@ -55,7 +55,9 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
               </span>
             </div>
             <br />
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <div className="content text-lg">
+              <ReactMarkdown>{content}</ReactMarkdown>
+            </div>
           </div>
         ) : (
           <div className="mx-auto text-5xl font-bold text-center text-[#c4c7c5]">
