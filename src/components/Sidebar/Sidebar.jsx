@@ -12,12 +12,12 @@ function Sidebar({ promptHistory, setCurrentPrompt }) {
   return (
     <aside className="p-4 max-w-[320px] min-h-screen inline-flex flex-col justify-between bg-[#f0f4f9]">
       <div className="top">
-        <img
+        <button
           onClick={handleSidebarToggle}
-          src={assets.menu_icon}
-          className="cursor-pointer"
-          alt="menu icon"
-        />
+          className="p-3 rounded-full hover:bg-[#e2e6eb] cursor-pointer"
+        >
+          <img src={assets.menu_icon} alt="menu icon" />
+        </button>
         {sidebarToggler && promptHistory.length > 0 && (
           <div className="my-5 flex flex-col">
             <p className="mb-2">Recent</p>
