@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { assets } from "../../assets/assets.js";
 import { getResponse } from "../../config/gemini.js";
-import Footer from "../Footer/Footer.jsx";
 import PromptInput from "../PromptInput/PromptInput.jsx";
 import "./Main.css";
 
@@ -73,7 +72,6 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
         handleContentGeneration={handleContentGeneration}
         promptHistory={promptHistory}
       />
-      <Footer />
     </div>
   );
 }
