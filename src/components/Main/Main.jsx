@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { assets } from "../../assets/assets.js";
 import { getResponse } from "../../config/gemini.js";
+import Footer from "../Footer/Footer.jsx";
 import PromptInput from "../PromptInput/PromptInput.jsx";
 import "./Main.css";
 
@@ -46,7 +47,7 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
           alt="user icon"
         />
       </nav>
-      <section className="my-7 h-[calc(100vh-240px)] flex justify-center items-center">
+      <section className="my-7 h-[calc(100vh-264px)] flex justify-center items-center">
         {showContent ? (
           <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">
             <div className="flex justify-end">
@@ -72,6 +73,7 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
         handleContentGeneration={handleContentGeneration}
         promptHistory={promptHistory}
       />
+      <Footer />
     </div>
   );
 }
