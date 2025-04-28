@@ -46,32 +46,34 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
           alt="user icon"
         />
       </nav>
-      <section className="my-7 h-[calc(100vh-264px)] flex justify-center items-center">
-        {showContent ? (
-          <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">
-            <div className="flex justify-end">
-              <span className="p-4 bg-[#444] text-white rounded-4xl rounded-br-sm">
-                {promptToDisplay}
-              </span>
+      <div className="h-[calc(100vh-80px)] flex flex-col">
+        <section className="my-7 grow flex justify-center items-center overflow-y-auto">
+          {showContent ? (
+            <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">
+              <div className="flex justify-end">
+                <span className="p-4 bg-[#444] text-white rounded-4xl rounded-br-sm">
+                  {promptToDisplay}
+                </span>
+              </div>
+              <br />
+              <div className="content text-lg">
+                <ReactMarkdown>{content}</ReactMarkdown>
+              </div>
             </div>
-            <br />
-            <div className="content text-lg">
-              <ReactMarkdown>{content}</ReactMarkdown>
+          ) : (
+            <div className="mx-auto text-5xl font-bold text-center text-[#c4c7c5]">
+              <h3>
+                Meet <span className="lumina-text">Lumina</span>,
+              </h3>
+              <h3>your personal AI assistant.</h3>
             </div>
-          </div>
-        ) : (
-          <div className="mx-auto text-5xl font-bold text-center text-[#c4c7c5]">
-            <h3>
-              Meet <span className="lumina-text">Lumina</span>,
-            </h3>
-            <h3>your personal AI assistant.</h3>
-          </div>
-        )}
-      </section>
-      <PromptInput
-        handleContentGeneration={handleContentGeneration}
-        promptHistory={promptHistory}
-      />
+          )}
+        </section>
+        <PromptInput
+          handleContentGeneration={handleContentGeneration}
+          promptHistory={promptHistory}
+        />
+      </div>
     </div>
   );
 }
