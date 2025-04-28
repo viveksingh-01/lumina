@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { assets } from "../../assets/assets";
 import Footer from "../Footer/Footer.jsx";
+import "./PromptInput.css";
 
 let promptIndex = 0;
 
@@ -41,7 +42,7 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
 
   return (
     <section className="w-full flex flex-col items-center justify-center">
-      <div className="w-[800px] p-5 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
+      <div className="input-container w-[800px] p-5 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
         <input
           type="text"
           value={prompt}

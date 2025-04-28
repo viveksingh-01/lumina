@@ -47,7 +47,7 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
         />
       </nav>
       <div className="h-[calc(100vh-80px)] flex flex-col">
-        <section className="my-7 grow flex justify-center items-center overflow-y-auto">
+        <section className="grow flex justify-center items-center overflow-y-auto">
           {showContent ? (
             <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">
               <div className="flex justify-end">
