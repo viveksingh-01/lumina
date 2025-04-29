@@ -56,7 +56,7 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
                 </span>
               </div>
               <br />
-              <div className="content text-lg">
+              <div className="content">
                 <ReactMarkdown>{content}</ReactMarkdown>
               </div>
             </div>
