@@ -23,7 +23,11 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
     setPromptToDisplay(prompt);
     setShowContent(true);
     const response = await getResponse(prompt);
-    setContent(response);
+    let contentString = "";
+    for await (const chunk of response) {
+      contentString += chunk.text;
+      setContent(contentString);
+    }
   }
 
   function handleContentGeneration(prompt) {
