@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { assets } from "../../assets/assets";
 import Footer from "../Footer/Footer.jsx";
 import "./PromptInput.css";
@@ -7,6 +7,13 @@ let promptIndex = 0;
 
 function PromptInput({ handleContentGeneration, promptHistory }) {
   const [prompt, setPrompt] = useState("");
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     if (promptHistory.length > 0) {
@@ -50,6 +57,7 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
           onKeyDown={handleKeyDown}
           className="w-full bg-transparent outline-0 border-none"
           placeholder="Enter a prompt here"
+          ref={inputRef}
         />
         <span onClick={handleInputSubmission} className="cursor-pointer">
           <img
