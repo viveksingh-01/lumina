@@ -3,14 +3,14 @@ import "./Sidebar.css";
 import { assets } from "/src/assets/assets.js";
 
 function Sidebar({ promptHistory, setCurrentPrompt }) {
-  const [sidebarToggler, setSidebarToggler] = useState(true);
+  const [sidebarToggler, setSidebarToggler] = useState(false);
 
   function handleSidebarToggle() {
     setSidebarToggler((value) => !value);
   }
 
   return (
-    <aside className="p-4 max-w-[320px] min-h-screen inline-flex flex-col justify-between bg-[#f0f4f9]">
+    <aside className={`sidebar ${sidebarToggler ? "expanded" : ""}`}>
       <div className="top">
         <button
           onClick={handleSidebarToggle}

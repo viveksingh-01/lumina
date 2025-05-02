@@ -1,4 +1,20 @@
+.sidebar {
+  padding: 1rem;
+  background-color: #f0f4f9;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 92px; /* Initial width when collapsed */
+  height: 100vh; /* Adjust as needed */
+  transition: width 0.3s ease-in-out; /* Smooth transition for width */
+}
+
+.sidebar.expanded {
+  width: 320px; /* Width when expanded */
+  overflow-x: hidden; /* Prevent horizontal scrollbar during collapse */
+}
+
 aside img {
-    width: 25px;
-    height: fit-content;
+  width: 25px;
+  height: fit-content;
 }
