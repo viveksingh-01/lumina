@@ -10,7 +10,7 @@
 }
 
 .sidebar.expanded {
-  width: 320px; /* Width when expanded */
+  width: 376px; /* Width when expanded */
   overflow-x: hidden; /* Prevent horizontal scrollbar during collapse */
 }
 
