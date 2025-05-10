@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { assets } from "../../assets/assets";
+import useSpeechRecognition from "../../hooks/useSpeechRecognition.js";
 import Footer from "../Footer/Footer.jsx";
 import "./PromptInput.css";
 
@@ -8,6 +9,7 @@ let promptIndex = 0;
 function PromptInput({ handleContentGeneration, promptHistory }) {
   const [prompt, setPrompt] = useState("");
   const inputRef = useRef(null);
+  const { startListening, transcript } = useSpeechRecognition();
 
   useEffect(() => {
     if (inputRef.current) {
@@ -20,6 +22,10 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
       promptIndex = promptHistory.length;
     }
   }, [promptHistory]);
+
+  useEffect(() => {
+    setPrompt(transcript);
+  }, [transcript]);
 
   function handleInputSubmission() {
     handleContentGeneration(prompt);
@@ -47,6 +53,10 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
     setPrompt("");
   }
 
+  function handleVoiceInput() {
+    startListening();
+  }
+
   return (
     <section className="w-full flex flex-col items-center justify-center">
       <div className="input-container w-[800px] p-5 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
@@ -59,14 +69,24 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
           placeholder="Enter a prompt here"
           ref={inputRef}
         />
-        <span onClick={handleInputSubmission} className="cursor-pointer">
-          <img
-            src={assets.send_icon}
-            className="opacity-65 hover:opacity-100"
-            width="32px"
-            alt="send icon"
-          />
-        </span>
+        <div className="flex gap-4">
+          <span onClick={handleVoiceInput} className="cursor-pointer">
+            <img
+              src={assets.mic_icon}
+              className="opacity-65 hover:opacity-100"
+              width="32px"
+              alt="mic icon"
+            />
+          </span>
+          <span onClick={handleInputSubmission} className="cursor-pointer">
+            <img
+              src={assets.send_icon}
+              className="opacity-65 hover:opacity-100"
+              width="32px"
+              alt="send icon"
+            />
+          </span>
+        </div>
       </div>
       <Footer />
     </section>
