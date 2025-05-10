@@ -66,7 +66,7 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={handleKeyDown}
           className="w-full bg-transparent outline-0 border-none"
-          placeholder="Enter a prompt here"
+          placeholder="Ask Lumina"
           ref={inputRef}
         />
         <div className="flex gap-4">
