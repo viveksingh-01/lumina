@@ -9,7 +9,8 @@ let promptIndex = 0;
 function PromptInput({ handleContentGeneration, promptHistory }) {
   const [prompt, setPrompt] = useState("");
   const inputRef = useRef(null);
-  const { startListening, transcript } = useSpeechRecognition();
+  const { startListening, isListening, stopListening, transcript } =
+    useSpeechRecognition();
 
   useEffect(() => {
     if (inputRef.current) {
@@ -28,6 +29,7 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
   }, [transcript]);
 
   function handleInputSubmission() {
+    stopListening();
     handleContentGeneration(prompt);
     resetInput();
   }
@@ -66,7 +68,7 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={handleKeyDown}
           className="w-full bg-transparent outline-0 border-none"
-          placeholder="Ask Lumina"
+          placeholder={isListening ? "Listening..." : "Ask Lumina"}
           ref={inputRef}
         />
         <div className="flex gap-4">
