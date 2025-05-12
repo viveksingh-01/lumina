@@ -26,6 +26,7 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
 
   useEffect(() => {
     setPrompt(transcript);
+    inputRef.current?.focus();
   }, [transcript]);
 
   function handleInputSubmission() {
@@ -82,14 +83,14 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
               />
             </span>
           ) : (
-          <span onClick={handleVoiceInput} className="cursor-pointer">
-            <img
-              src={assets.mic_icon}
-              className="opacity-65 hover:opacity-100"
-              width="32px"
-              alt="mic icon"
-            />
-          </span>
+            <span onClick={handleVoiceInput} className="cursor-pointer">
+              <img
+                src={assets.mic_icon}
+                className="opacity-65 hover:opacity-100"
+                width="32px"
+                alt="mic icon"
+              />
+            </span>
           )}
         </div>
       </div>
