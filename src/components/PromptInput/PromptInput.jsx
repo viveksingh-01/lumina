@@ -72,6 +72,16 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
           ref={inputRef}
         />
         <div className="flex gap-4">
+          {isListening ? (
+            <span onClick={handleInputSubmission} className="cursor-pointer">
+              <img
+                src={assets.send_icon}
+                className="opacity-65 hover:opacity-100"
+                width="32px"
+                alt="send icon"
+              />
+            </span>
+          ) : (
           <span onClick={handleVoiceInput} className="cursor-pointer">
             <img
               src={assets.mic_icon}
@@ -80,14 +90,7 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
               alt="mic icon"
             />
           </span>
-          <span onClick={handleInputSubmission} className="cursor-pointer">
-            <img
-              src={assets.send_icon}
-              className="opacity-65 hover:opacity-100"
-              width="32px"
-              alt="send icon"
-            />
-          </span>
+          )}
         </div>
       </div>
       <Footer />
