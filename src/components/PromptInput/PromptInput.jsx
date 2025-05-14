@@ -62,13 +62,13 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
 
   return (
     <section className="w-full flex flex-col items-center justify-center">
-      <div className="input-container w-[800px] p-4 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
+      <div className="input-container w-[800px] p-2 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
         <input
           type="text"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="w-full bg-transparent outline-0 border-none"
+          className="w-full ml-4 text-[#1b1c1d] bg-transparent outline-0 border-none"
           placeholder={isListening ? "Listening..." : "Ask Lumina"}
           ref={inputRef}
         />
