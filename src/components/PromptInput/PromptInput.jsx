@@ -62,7 +62,7 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
 
   return (
     <section className="w-full flex flex-col items-center justify-center">
-      <div className="input-container w-[800px] p-5 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
+      <div className="input-container w-[800px] p-4 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
         <input
           type="text"
           value={prompt}
@@ -74,23 +74,19 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
         />
         <div className="flex gap-4">
           {isListening ? (
-            <span onClick={handleInputSubmission} className="cursor-pointer">
-              <img
-                src={assets.send_icon}
-                className="opacity-65 hover:opacity-100"
-                width="32px"
-                alt="send icon"
-              />
-            </span>
+            <button
+              onClick={handleInputSubmission}
+              className="p-3 rounded-full opacity-65 hover:opacity-100 hover:bg-[#e2e6eb] cursor-pointer"
+            >
+              <img src={assets.send_icon} width="32px" alt="send icon" />
+            </button>
           ) : (
-            <span onClick={handleVoiceInput} className="cursor-pointer">
-              <img
-                src={assets.mic_icon}
-                className="opacity-65 hover:opacity-100"
-                width="32px"
-                alt="mic icon"
-              />
-            </span>
+            <button
+              onClick={handleVoiceInput}
+              className="p-3 rounded-full opacity-65 hover:opacity-100 hover:bg-[#e2e6eb] cursor-pointer"
+            >
+              <img src={assets.mic_icon} width="32px" alt="mic icon" />
+            </button>
           )}
         </div>
       </div>
