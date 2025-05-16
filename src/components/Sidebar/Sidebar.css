@@ -4,7 +4,8 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 92px; /* Initial width when collapsed */
+  min-width: 80px;
+  width: 80px; /* Initial width when collapsed */
   height: 100vh; /* Adjust as needed */
   transition: width 0.3s ease-in-out; /* Smooth transition for width */
 }
