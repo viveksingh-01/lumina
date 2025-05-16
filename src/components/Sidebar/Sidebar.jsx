@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Sidebar.css";
 import { assets } from "/src/assets/assets.js";
 
@@ -10,7 +10,11 @@ function Sidebar({ promptHistory, setCurrentPrompt }) {
   }
 
   return (
-    <aside className={`sidebar ${sidebarToggler ? "expanded" : ""}`}>
+    <aside
+      onMouseEnter={() => setSidebarToggler(true)}
+      onMouseLeave={() => setSidebarToggler(false)}
+      className={`sidebar ${sidebarToggler ? "expanded" : ""}`}
+    >
       <div className="top">
         <button
           onClick={handleSidebarToggle}
