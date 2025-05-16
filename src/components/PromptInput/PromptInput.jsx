@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { assets } from "../../assets/assets";
 import useSpeechRecognition from "../../hooks/useSpeechRecognition.js";
 import Footer from "../Footer/Footer.jsx";
@@ -9,8 +9,13 @@ let promptIndex = 0;
 function PromptInput({ handleContentGeneration, promptHistory }) {
   const [prompt, setPrompt] = useState("");
   const inputRef = useRef(null);
-  const { startListening, isListening, stopListening, transcript } =
-    useSpeechRecognition();
+  const {
+    startListening,
+    isListening,
+    stopListening,
+    transcript,
+    setTranscript,
+  } = useSpeechRecognition();
 
   useEffect(() => {
     if (inputRef.current) {
@@ -54,6 +59,7 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
 
   function resetInput() {
     setPrompt("");
+    setTranscript("");
   }
 
   function handleVoiceInput() {
