@@ -20,7 +20,7 @@ function Sidebar({ promptHistory, setCurrentPrompt }) {
           onClick={handleSidebarToggle}
           className="p-3 rounded-full hover:bg-[#e2e6eb] cursor-pointer"
         >
-          <img src={assets.menu_icon} alt="menu icon" />
+          <img src={assets.menu_icon} style={{ width: 20 }} alt="menu icon" />
         </button>
         {sidebarToggler && promptHistory.length > 0 && (
           <div className="my-5 flex flex-col">
@@ -31,7 +31,11 @@ function Sidebar({ promptHistory, setCurrentPrompt }) {
                 onClick={() => setCurrentPrompt(prompt)}
                 className="min-w-3xs p-3 flex justify-start gap-2 rounded-2xl text-[#282828] hover:bg-[#e2e6eb] cursor-pointer"
               >
-                <img src={assets.message_icon} alt="message icon" />
+                <img
+                  src={assets.message_icon}
+                  style={{ width: 24 }}
+                  alt="message icon"
+                />
                 <p>{prompt}</p>
               </div>
             ))}
