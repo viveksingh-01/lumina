@@ -24,12 +24,19 @@ function Sidebar({ promptHistory, setCurrentPrompt }) {
         </button>
         {sidebarToggler && promptHistory.length > 0 && (
           <div className="my-5 flex flex-col">
-            <p className="mb-2">Recent</p>
+            <div className="mt-5 ml-3 flex gap-2">
+              <img
+                src={assets.history_icon}
+                style={{ width: 24 }}
+                alt="message icon"
+              />
+              <p className="text-lg mb-2">Recent</p>
+            </div>
             {promptHistory.map((prompt, index) => (
               <div
                 key={index}
                 onClick={() => setCurrentPrompt(prompt)}
-                className="min-w-3xs p-3 flex justify-start gap-2 rounded-2xl text-[#282828] hover:bg-[#e2e6eb] cursor-pointer"
+                className="ml-1 min-w-3xs p-3 flex justify-start gap-1 rounded-2xl text-[#282828] hover:bg-[#e2e6eb] cursor-pointer"
               >
                 <img
                   src={assets.message_icon}
