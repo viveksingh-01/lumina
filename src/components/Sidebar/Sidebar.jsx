@@ -3,26 +3,40 @@ import "./Sidebar.css";
 import { assets } from "/src/assets/assets.js";
 
 function Sidebar({ promptHistory, setCurrentPrompt }) {
-  const [sidebarToggler, setSidebarToggler] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpansionSustained, setIsExpansionSustained] = useState(false);
 
-  function handleSidebarToggle() {
-    setSidebarToggler((value) => !value);
+  function handleToggleOnClick() {
+    if (!isExpansionSustained) {
+      setIsExpanded(true);
+      setIsExpansionSustained(true);
+    } else {
+      setIsExpanded(false);
+      setIsExpansionSustained(false);
+    }
+  }
+
+  function handleToggleOnHover(value) {
+    // Expand or collapse sidebar on hover, only when it's in collapsed state
+    if (!isExpansionSustained) {
+      setIsExpanded(value);
+    }
   }
 
   return (
     <aside
-      onMouseEnter={() => setSidebarToggler(true)}
-      onMouseLeave={() => setSidebarToggler(false)}
-      className={`sidebar ${sidebarToggler ? "expanded" : ""}`}
+      onMouseEnter={() => handleToggleOnHover(true)}
+      onMouseLeave={() => handleToggleOnHover(false)}
+      className={`sidebar ${isExpanded ? "expanded" : ""}`}
     >
       <div className="top">
         <button
-          onClick={handleSidebarToggle}
+          onClick={handleToggleOnClick}
           className="p-3 rounded-full hover:bg-[#e2e6eb] cursor-pointer"
         >
           <img src={assets.menu_icon} style={{ width: 20 }} alt="menu icon" />
         </button>
-        {sidebarToggler && promptHistory.length > 0 && (
+        {isExpanded && promptHistory.length > 0 && (
           <div className="my-5 flex flex-col">
             <div className="mt-5 ml-3 flex gap-2">
               <img
