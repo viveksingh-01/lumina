@@ -4,18 +4,16 @@ import useSpeechRecognition from "../../hooks/useSpeechRecognition.js";
 import Footer from "../Footer/Footer.jsx";
 import "./PromptInput.css";
 
-let promptIndex = 0;
+type PromptInputProps = {
+  handleContentGeneration: (prompt: string) => void;
+  promptHistory: string[];
+};
 
-function PromptInput({ handleContentGeneration, promptHistory }) {
+let promptIndex = 0;
+const PromptInput: React.FC<PromptInputProps> = ({ handleContentGeneration, promptHistory }) => {
   const [prompt, setPrompt] = useState("");
-  const inputRef = useRef(null);
-  const {
-    startListening,
-    isListening,
-    stopListening,
-    transcript,
-    setTranscript,
-  } = useSpeechRecognition();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { startListening, isListening, stopListening, transcript, setTranscript } = useSpeechRecognition();
 
   useEffect(() => {
     if (inputRef.current) {
@@ -34,13 +32,13 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
     inputRef.current?.focus();
   }, [transcript]);
 
-  function handleInputSubmission() {
+  function handleInputSubmission(): void {
     stopListening();
     handleContentGeneration(prompt);
     resetInput();
   }
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e: any): void {
     if (e.keyCode == 13) {
       handleInputSubmission();
     } else if (e.keyCode == 38) {
@@ -50,19 +48,19 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
     }
   }
 
-  function traversePrompts(changeInIndexValue) {
+  function traversePrompts(changeInIndexValue: number): void {
     if (promptHistory.length > 1) {
       promptIndex += changeInIndexValue;
       setPrompt(promptHistory[promptIndex]);
     }
   }
 
-  function resetInput() {
+  function resetInput(): void {
     setPrompt("");
     setTranscript("");
   }
 
-  function handleVoiceInput() {
+  function handleVoiceInput(): void {
     startListening();
   }
 
@@ -99,6 +97,6 @@ function PromptInput({ handleContentGeneration, promptHistory }) {
       <Footer />
     </section>
   );
-}
+};
 
 export default PromptInput;

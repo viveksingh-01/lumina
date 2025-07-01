@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useSpeechRecognition = () => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (
@@ -12,16 +12,13 @@ const useSpeechRecognition = () => {
       setError("Speech Recognition API is not supported in this browser.");
       return;
     }
-
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-
-    recognition.continuous = true;
-    recognition.interimResults = true;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition: SpeechRecognition = new SpeechRecognition();
     recognition.lang = "en-US";
+    recognition.interimResults = true;
+    recognition.continuous = true;
 
-    const handleResult = (event) => {
+    const handleResult = (event: SpeechRecognitionEvent) => {
       let interimTranscript = "";
       for (let i = event.resultIndex; i < event.results.length; i++) {
         if (event.results[i].isFinal) {
@@ -34,7 +31,7 @@ const useSpeechRecognition = () => {
       console.log("Interim Transcript:", interimTranscript);
     };
 
-    const handleError = (event) => {
+    const handleError = (event: SpeechRecognitionErrorEvent) => {
       setError(event.error);
       setIsListening(false);
     };

@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { assets } from "../../assets/assets.js";
 import { getResponse } from "../../config/gemini.js";
 import PromptInput from "../PromptInput/PromptInput.jsx";
 import "./Main.css";
 
-function Main({ currentPrompt, promptHistory, setPromptHistory }) {
-  const [content, setContent] = useState("");
-  const [promptToDisplay, setPromptToDisplay] = useState("");
-  const [showContent, setShowContent] = useState(false);
+type MainProps = {
+  currentPrompt: string | null;
+  promptHistory: string[];
+  setPromptHistory: any;
+};
+
+const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHistory }) => {
+  const [content, setContent] = useState<string>("");
+  const [promptToDisplay, setPromptToDisplay] = useState<string>("");
+  const [showContent, setShowContent] = useState<boolean>(false);
 
   /**
    * Generates content based on the currentPrompt (prop passed from App component)
@@ -19,7 +25,7 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
     }
   }, [currentPrompt]);
 
-  async function generateContent(prompt) {
+  async function generateContent(prompt: string) {
     setPromptToDisplay(prompt);
     setShowContent(true);
     const response = await getResponse(prompt);
@@ -30,34 +36,27 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
     }
   }
 
-  function handleContentGeneration(prompt) {
+  function handleContentGeneration(prompt: string): void {
     generateContent(prompt);
     updatePromptHistory(prompt);
   }
 
-  function updatePromptHistory(prompt) {
-    setPromptHistory((prompts) => [...prompts, prompt]);
+  function updatePromptHistory(prompt: string): void {
+    setPromptHistory((prompts: string[]) => [...prompts, prompt]);
   }
 
   return (
     <div className="w-full p-5 px-7">
       <nav className="flex justify-between">
         <p className="text-2xl text-[#585858]">Lumina</p>
-        <img
-          src={assets.user_icon}
-          width="40px"
-          className="rounded-full"
-          alt="user icon"
-        />
+        <img src={assets.user_icon} width="40px" className="rounded-full" alt="user icon" />
       </nav>
       <div className="h-[calc(100vh-80px)] flex flex-col">
         <section className="grow flex justify-center items-center overflow-y-auto">
           {showContent ? (
             <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">
               <div className="flex justify-end">
-                <span className="p-4 bg-[#444] text-white rounded-4xl rounded-br-sm">
-                  {promptToDisplay}
-                </span>
+                <span className="p-4 bg-[#444] text-white rounded-4xl rounded-br-sm">{promptToDisplay}</span>
               </div>
               <br />
               <div className="content">
@@ -73,13 +72,10 @@ function Main({ currentPrompt, promptHistory, setPromptHistory }) {
             </div>
           )}
         </section>
-        <PromptInput
-          handleContentGeneration={handleContentGeneration}
-          promptHistory={promptHistory}
-        />
+        <PromptInput handleContentGeneration={handleContentGeneration} promptHistory={promptHistory} />
       </div>
     </div>
   );
-}
+};
 
 export default Main;
