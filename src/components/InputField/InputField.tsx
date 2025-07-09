@@ -1,15 +1,14 @@
 type InputFieldProps = {
   name: string;
   type: string;
-  label: string;
+  placeholder: string;
   value: string;
 };
 
-const InputField: React.FC<InputFieldProps> = ({ name, type, label, value }) => {
+const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value }) => {
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
-      <input id={name} type={type} name={name} value={value} />
+    <div className="mb-4">
+      <input type={type} name={name} value={value} placeholder={placeholder} />
     </div>
   );
 };
