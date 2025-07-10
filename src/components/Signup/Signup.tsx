@@ -27,6 +27,12 @@ const Signup: React.FC = () => {
             value={formData.password}
             setValue={setFormData}
           />
+          <button
+            type="submit"
+            className="w-full p-4 rounded-full bg-black text-white text-lg hover:cursor-pointer hover:bg-gray-700 transition-colors"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
