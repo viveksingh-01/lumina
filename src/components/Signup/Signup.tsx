@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { IFormData } from "../../types/form-data";
 import InputField from "../InputField/InputField";
 
 const Signup: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<IFormData>({
     email: "",
     password: "",
   });
@@ -12,8 +13,20 @@ const Signup: React.FC = () => {
       <h1 className="text-3xl p-2 mb-9">Create an account</h1>
       <div>
         <form>
-          <InputField type="email" name="email" placeholder="Email" value={formData.email} />
-          <InputField type="password" name="password" placeholder="Password" value={formData.password} />
+          <InputField
+            type="email"
+            name="email"
+            placeholder="Email address"
+            value={formData.email}
+            setValue={setFormData}
+          />
+          <InputField
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            setValue={setFormData}
+          />
         </form>
       </div>
     </div>
