@@ -5,7 +5,7 @@ type InputFieldProps = {
   type: string;
   placeholder: string;
   value: string;
-  setValue: (data: any) => void
+  setValue: (data: any) => void;
 };
 
 const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value, setValue }) => {
@@ -13,13 +13,13 @@ const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value,
     setValue((formData: IFormData) => ({ ...formData, [name]: e.target?.value }));
   };
   return (
-    <div className="mb-4">
+    <div className="mb-7">
       <input
         type={type}
         name={name}
         value={value}
         placeholder={placeholder}
-        className="w-[300px] px-4 py-3 border-2 border-gray-300 rounded-full text-lg"
+        className="w-[360px] px-4 py-3 border-2 border-gray-300 rounded-full text-lg"
         onChange={handleInput}
       />
     </div>
