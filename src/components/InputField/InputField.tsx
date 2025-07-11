@@ -9,7 +9,7 @@ type InputFieldProps = {
 };
 
 const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value, setValue }) => {
-  const handleInput = (e: any) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue((formData: IFormData) => ({ ...formData, [name]: e.target?.value }));
   };
   return (
