@@ -6,6 +6,7 @@ const Signup: React.FC = () => {
   const [formData, setFormData] = useState<IFormData>({
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleSubmit = (e: FormEvent) => {
@@ -30,6 +31,13 @@ const Signup: React.FC = () => {
             name="password"
             placeholder="Password"
             value={formData.password}
+            setValue={setFormData}
+          />
+          <InputField
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm password"
+            value={formData.confirmPassword}
             setValue={setFormData}
           />
           <button
