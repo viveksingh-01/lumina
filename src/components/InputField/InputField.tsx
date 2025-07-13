@@ -29,7 +29,7 @@ const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value,
         htmlFor={name}
         className={`
           absolute left-4 px-1 transition-all duration-200
-          ${focused || value ? "-top-2.5 text-md text-emerald-600 bg-gray-50" : "top-3.5 text-lg text-gray-500"}
+          ${focused || value ? "-top-2.5 text-sm text-blue-800 bg-gray-50" : "top-3.5 text-gray-400"}
           pointer-events-none
         `}
       >
