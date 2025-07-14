@@ -42,7 +42,7 @@ const Signup: React.FC = () => {
           />
           <button
             type="submit"
-            className="w-full p-4 rounded-full bg-black text-white text-lg hover:cursor-pointer hover:bg-gray-700 transition-colors"
+            className="w-full p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors"
           >
             Submit
           </button>
