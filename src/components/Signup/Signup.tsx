@@ -25,6 +25,7 @@ const Signup: React.FC = () => {
             placeholder="Email address"
             value={formData.email}
             setValue={setFormData}
+            autoFocus={true}
           />
           <InputField
             type="password"
@@ -32,6 +33,7 @@ const Signup: React.FC = () => {
             placeholder="Password"
             value={formData.password}
             setValue={setFormData}
+            autoFocus={false}
           />
           <InputField
             type="password"
@@ -39,6 +41,7 @@ const Signup: React.FC = () => {
             placeholder="Confirm password"
             value={formData.confirmPassword}
             setValue={setFormData}
+            autoFocus={false}
           />
           <button
             type="submit"

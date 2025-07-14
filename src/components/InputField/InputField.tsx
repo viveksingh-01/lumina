@@ -6,10 +6,11 @@ type InputFieldProps = {
   type: string;
   placeholder: string;
   value: string;
+  autoFocus: boolean;
   setValue: (data: any) => void;
 };
 
-const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value, setValue }) => {
+const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value, autoFocus, setValue }) => {
   const [focused, setFocused] = useState(false);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue((formData: IFormData) => ({ ...formData, [name]: e.target?.value }));
@@ -24,6 +25,7 @@ const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value,
         onChange={handleInput}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
+        autoFocus={autoFocus}
       />
       <label
         htmlFor={name}
