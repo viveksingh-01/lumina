@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
-import { IFormData } from "../../types/form-data";
+import { ISignupFormData } from "../../types/form-data";
 import InputField from "../InputField/InputField";
 
 const Signup: React.FC = () => {
-  const [formData, setFormData] = useState<IFormData>({
+  const [formData, setFormData] = useState<ISignupFormData>({
     email: "",
     password: "",
     confirmPassword: "",

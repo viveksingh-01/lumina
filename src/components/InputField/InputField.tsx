@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IFormData } from "../../types/form-data";
+import { ISignupFormData } from "../../types/form-data";
 
 type InputFieldProps = {
   name: string;
@@ -13,7 +13,7 @@ type InputFieldProps = {
 const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value, autoFocus, setValue }) => {
   const [focused, setFocused] = useState(false);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((formData: IFormData) => ({ ...formData, [name]: e.target?.value }));
+    setValue((formData: ISignupFormData) => ({ ...formData, [name]: e.target?.value }));
   };
   return (
     <div className="mb-7 relative">
