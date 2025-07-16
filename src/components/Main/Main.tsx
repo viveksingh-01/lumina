@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { assets } from "../../assets/assets.js";
+import { Link } from "react-router-dom";
 import { getResponse } from "../../config/gemini.js";
 import PromptInput from "../PromptInput/PromptInput.jsx";
 import "./Main.css";
@@ -47,9 +47,9 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
 
   return (
     <div className="w-full p-5 px-7">
-      <nav className="flex justify-between">
+      <nav className="flex justify-between pr-5">
         <p className="text-2xl text-[#585858]">Lumina</p>
-        <img src={assets.user_icon} width="40px" className="rounded-full" alt="user icon" />
+        <Link to="/auth/log-in">Login</Link>
       </nav>
       <div className="h-[calc(100vh-80px)] flex flex-col">
         <section className="grow flex justify-center items-center overflow-y-auto">
