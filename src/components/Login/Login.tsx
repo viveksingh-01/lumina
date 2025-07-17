@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import { ILoginFormData } from "../../types/form-data";
 import InputField from "../InputField/InputField";
 
@@ -41,8 +42,13 @@ const Login: React.FC = () => {
             Login
           </button>
         </form>
-        <div className="my-5 text-center text-gray-800 tracking-wide">
-          <p>Don't have an account? Sign up</p>
+        <div className="my-7 text-center text-gray-800 tracking-wide">
+          <p>
+            Don't have an account?{" "}
+            <span className="text-blue-800 hover:underline">
+              <Link to="/auth/create-account">Sign up</Link>
+            </span>
+          </p>
         </div>
       </div>
     </div>
