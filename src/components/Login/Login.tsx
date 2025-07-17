@@ -41,6 +41,9 @@ const Login: React.FC = () => {
             Login
           </button>
         </form>
+        <div className="my-5 text-center text-gray-800 tracking-wide">
+          <p>Don't have an account? Sign up</p>
+        </div>
       </div>
     </div>
   );
