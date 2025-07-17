@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ISignupFormData } from "../../types/form-data";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 type InputFieldProps = {
   name: string;
@@ -7,22 +7,17 @@ type InputFieldProps = {
   placeholder: string;
   value: string;
   autoFocus: boolean;
-  setValue: (data: any) => void;
+  register: UseFormRegisterReturn;
 };
 
-const InputField: React.FC<InputFieldProps> = ({ name, type, placeholder, value, autoFocus, setValue }) => {
+const InputField: React.FC<InputFieldProps> = ({ register, name, type, placeholder, value, autoFocus }) => {
   const [focused, setFocused] = useState(false);
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((formData: ISignupFormData) => ({ ...formData, [name]: e.target?.value }));
-  };
   return (
     <div className="mb-7 relative">
       <input
         type={type}
-        name={name}
-        value={value}
+        {...register}
         className="w-[360px] px-4 py-3 border-2 border-gray-300 rounded-full text-lg"
-        onChange={handleInput}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         autoFocus={autoFocus}

@@ -1,38 +1,34 @@
-import { FormEvent, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { ILoginFormData } from "../../types/form-data";
 import InputField from "../InputField/InputField";
 
 const Login: React.FC = () => {
-  const [formData, setFormData] = useState<ILoginFormData>({
-    email: "",
-    password: "",
-  });
+  const { register, handleSubmit, watch } = useForm<ILoginFormData>();
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
+  const submitForm: SubmitHandler<ILoginFormData> = (data) => {
+    console.log("Form data:", data);
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center pt-20 bg-gray-50 p-4">
       <h1 className="text-3xl p-2 mb-9">Welcome back!</h1>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(submitForm)}>
           <InputField
             type="email"
             name="email"
             placeholder="Email address"
-            value={formData.email}
-            setValue={setFormData}
+            register={register("email")}
+            value={watch("email")}
             autoFocus={true}
           />
           <InputField
             type="password"
             name="password"
             placeholder="Password"
-            value={formData.password}
-            setValue={setFormData}
+            register={register("password")}
+            value={watch("password")}
             autoFocus={false}
           />
           <button
