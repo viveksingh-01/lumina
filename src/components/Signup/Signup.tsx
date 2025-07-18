@@ -4,7 +4,12 @@ import { ISignupFormData } from "../../types/form-data";
 import InputField from "../InputField/InputField";
 
 const Signup: React.FC = () => {
-  const { register, handleSubmit, watch } = useForm<ISignupFormData>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<ISignupFormData>();
 
   const submitForm: SubmitHandler<ISignupFormData> = (data) => {
     console.log("Form data:", data);
@@ -19,23 +24,32 @@ const Signup: React.FC = () => {
             type="email"
             name="email"
             placeholder="Email address"
-            register={register("email")}
+            register={register("email", {
+              required: "Email is required",
+            })}
             value={watch("email")}
+            error={errors.email?.message}
             autoFocus={true}
           />
           <InputField
             type="password"
             name="password"
             placeholder="Password"
-            register={register("password")}
+            register={register("password", {
+              required: "Password is required",
+            })}
             value={watch("password")}
+            error={errors.password?.message}
           />
           <InputField
             type="password"
             name="confirmPassword"
             placeholder="Confirm password"
-            register={register("confirmPassword")}
+            register={register("confirmPassword", {
+              required: "Confirm password is required",
+            })}
             value={watch("confirmPassword")}
+            error={errors.confirmPassword?.message}
           />
           <button
             type="submit"
