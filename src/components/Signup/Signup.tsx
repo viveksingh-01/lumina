@@ -29,7 +29,6 @@ const Signup: React.FC = () => {
             placeholder="Password"
             register={register("password")}
             value={watch("password")}
-            autoFocus={false}
           />
           <InputField
             type="password"
@@ -37,7 +36,6 @@ const Signup: React.FC = () => {
             placeholder="Confirm password"
             register={register("confirmPassword")}
             value={watch("confirmPassword")}
-            autoFocus={false}
           />
           <button
             type="submit"

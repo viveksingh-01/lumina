@@ -6,12 +6,20 @@ type InputFieldProps = {
   type: string;
   placeholder: string;
   value: string;
-  autoFocus: boolean;
   register: UseFormRegisterReturn;
   error?: string;
+  autoFocus?: boolean;
 };
 
-const InputField: React.FC<InputFieldProps> = ({ register, name, type, placeholder, value, autoFocus, error }) => {
+const InputField: React.FC<InputFieldProps> = ({
+  register,
+  name,
+  type,
+  placeholder,
+  value,
+  error,
+  autoFocus = false,
+}) => {
   const [focused, setFocused] = useState(false);
   return (
     <div className="mb-7 relative">

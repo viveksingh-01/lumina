@@ -29,7 +29,6 @@ const Login: React.FC = () => {
             placeholder="Password"
             register={register("password")}
             value={watch("password")}
-            autoFocus={false}
           />
           <button
             type="submit"
