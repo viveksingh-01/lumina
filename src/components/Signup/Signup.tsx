@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { ISignupFormData } from "../../types/form-data";
 import InputField from "../InputField/InputField";
 
@@ -45,6 +46,14 @@ const Signup: React.FC = () => {
             Submit
           </button>
         </form>
+        <div className="my-7 text-center text-gray-600 tracking-wide">
+          <p>
+            Already have an account?{" "}
+            <span className="text-blue-800 hover:underline">
+              <Link to="/auth/log-in">Log in</Link>
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

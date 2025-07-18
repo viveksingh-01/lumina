@@ -38,7 +38,7 @@ const Login: React.FC = () => {
             Login
           </button>
         </form>
-        <div className="my-7 text-center text-gray-800 tracking-wide">
+        <div className="my-7 text-center text-gray-600 tracking-wide">
           <p>
             Don't have an account?{" "}
             <span className="text-blue-800 hover:underline">
