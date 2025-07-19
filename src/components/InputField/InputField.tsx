@@ -38,7 +38,7 @@ const InputField: React.FC<InputFieldProps> = ({
           absolute left-4 px-1 transition-all duration-200
           ${focused || value ? "-top-2.5 text-sm bg-gray-50" : "top-3.5 text-gray-300"}
           ${focused ? "text-blue-800" : "text-gray-400"}
-          ${error && "text-red-600"}
+          ${focused && error && "text-red-600"}
           pointer-events-none
         `}
       >
