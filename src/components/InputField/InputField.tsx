@@ -37,7 +37,10 @@ const InputField: React.FC<InputFieldProps> = ({
       {type === "password" && (
         <span
           onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute inset-y-2 right-2 text-md flex items-center px-3 text-gray-600 hover:text-gray-800 hover:cursor-pointer outline-0"
+          className={`
+            absolute inset-y-2 right-2 text-md flex items-center px-3 text-gray-400 hover:text-gray-600 hover:cursor-pointer outline-0
+            ${error && "bottom-9"} 
+          `}
           tabIndex={-1}
         >
           {showPassword ? <Eye /> : <EyeClosed />}
