@@ -21,11 +21,15 @@ const Signup: React.FC = () => {
       <div>
         <form onSubmit={handleSubmit(submitForm)}>
           <InputField
-            type="email"
+            type="text"
             name="email"
             placeholder="Email address"
             register={register("email", {
               required: "Email is required",
+              pattern: {
+                value: /^\S+@\S+$/i,
+                message: "Invalid email address",
+              },
             })}
             value={watch("email")}
             error={errors.email?.message}
@@ -37,6 +41,10 @@ const Signup: React.FC = () => {
             placeholder="Password"
             register={register("password", {
               required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
             })}
             value={watch("password")}
             error={errors.password?.message}
@@ -46,7 +54,8 @@ const Signup: React.FC = () => {
             name="confirmPassword"
             placeholder="Confirm password"
             register={register("confirmPassword", {
-              required: "Confirm password is required",
+              required: "Please confirm your password",
+              validate: (value) => value === watch("password") || "Passwords do not match",
             })}
             value={watch("confirmPassword")}
             error={errors.confirmPassword?.message}
