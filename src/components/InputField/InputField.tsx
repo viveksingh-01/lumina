@@ -1,3 +1,4 @@
+import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
@@ -21,10 +22,11 @@ const InputField: React.FC<InputFieldProps> = ({
   autoFocus = false,
 }) => {
   const [focused, setFocused] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="mb-7 relative">
       <input
-        type={type}
+        type={type === "password" ? (showPassword ? "text" : "password") : type}
         {...register}
         className={`w-[360px] px-4 py-3 border-2 border-gray-300 rounded-full text-lg
           ${error && "border-red-600 outline-red-600"}`}
@@ -32,6 +34,15 @@ const InputField: React.FC<InputFieldProps> = ({
         onBlur={() => setFocused(false)}
         autoFocus={autoFocus}
       />
+      {type === "password" && (
+        <span
+          onClick={() => setShowPassword((prev) => !prev)}
+          className="absolute inset-y-2 right-2 text-md flex items-center px-3 text-gray-600 hover:text-gray-800 hover:cursor-pointer outline-0"
+          tabIndex={-1}
+        >
+          {showPassword ? <Eye /> : <EyeClosed />}
+        </span>
+      )}
       <label
         htmlFor={name}
         className={`
