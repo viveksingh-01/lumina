@@ -2,9 +2,15 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { ILoginFormData } from "../../types/form-data";
 import InputField from "../InputField/InputField";
+import SubmitButton from "../SubmitButton/SubmitButton";
 
 const Login: React.FC = () => {
-  const { register, handleSubmit, watch } = useForm<ILoginFormData>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { isSubmitting },
+  } = useForm<ILoginFormData>();
 
   const submitForm: SubmitHandler<ILoginFormData> = (data) => {
     console.log("Form data:", data);
@@ -30,12 +36,7 @@ const Login: React.FC = () => {
             register={register("password")}
             value={watch("password")}
           />
-          <button
-            type="submit"
-            className="w-full p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors"
-          >
-            Login
-          </button>
+          <SubmitButton label="Log in" isSubmitting={isSubmitting} />
         </form>
         <div className="my-7 text-center text-gray-600 tracking-wide">
           <p>
