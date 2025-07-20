@@ -28,8 +28,10 @@ const InputField: React.FC<InputFieldProps> = ({
       <input
         type={type === "password" ? (showPassword ? "text" : "password") : type}
         {...register}
-        className={`w-[360px] px-4 py-3 border-2 border-gray-300 rounded-full text-lg
-          ${error && "border-red-600 outline-red-600"}`}
+        className={`
+          w-[360px] px-4 py-3 border-2 border-gray-300 rounded-full text-lg outline-sky-600
+          ${error && "border-red-600 outline-red-600"}
+        `}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         autoFocus={autoFocus}
@@ -39,6 +41,7 @@ const InputField: React.FC<InputFieldProps> = ({
           onClick={() => setShowPassword((prev) => !prev)}
           className={`
             absolute inset-y-2 right-2 text-md flex items-center px-3 text-gray-400 hover:text-gray-600 hover:cursor-pointer outline-0
+            ${focused && "text-sky-600"} 
             ${error && "bottom-9"} 
           `}
           tabIndex={-1}
@@ -51,7 +54,7 @@ const InputField: React.FC<InputFieldProps> = ({
         className={`
           absolute left-4 px-1 transition-all duration-200
           ${focused || value ? "-top-2.5 text-sm bg-gray-50" : "top-3.5 text-gray-300"}
-          ${focused ? "text-blue-800" : "text-gray-400"}
+          ${focused ? "text-sky-600" : "text-gray-400"}
           ${focused && error && "text-red-600"}
           pointer-events-none
         `}

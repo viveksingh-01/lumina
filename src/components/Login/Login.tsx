@@ -40,7 +40,7 @@ const Login: React.FC = () => {
         <div className="my-7 text-center text-gray-600 tracking-wide">
           <p>
             Don't have an account?{" "}
-            <span className="text-blue-800 hover:underline">
+            <span className="text-sky-600 hover:underline">
               <Link to="/auth/create-account">Sign up</Link>
             </span>
           </p>
