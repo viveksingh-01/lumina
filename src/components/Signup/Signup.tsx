@@ -62,17 +62,6 @@ const Signup: React.FC = () => {
             value={watch("password")}
             error={errors.password?.message}
           />
-          <InputField
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm password"
-            register={register("confirmPassword", {
-              required: "Please confirm your password",
-              validate: (value) => value === watch("password") || "Passwords do not match",
-            })}
-            value={watch("confirmPassword")}
-            error={errors.confirmPassword?.message}
-          />
           <SubmitButton label="Sign up" isSubmitting={isSubmitting} />
         </form>
         <div className="my-7 text-center text-gray-600 tracking-wide">
