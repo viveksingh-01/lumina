@@ -1,8 +1,9 @@
+import { AxiosError } from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { createAccount } from "../../services/auth";
 import { ISignupFormData } from "../../types/form-data";
-import { ISuccessResponse } from "../../types/response";
+import { IErrorResponse, ISuccessResponse } from "../../types/response";
 import InputField from "../InputField/InputField";
 import SubmitButton from "../SubmitButton/SubmitButton";
 
@@ -16,9 +17,15 @@ const Signup: React.FC = () => {
 
   const submitForm: SubmitHandler<ISignupFormData> = async (formValues) => {
     const { email, password } = formValues;
-    const res = await createAccount({ email, password });
-    const { message } = res as ISuccessResponse;
-    console.log("Response: ", message);
+    try {
+      const res = await createAccount({ email, password });
+      const { message } = res as ISuccessResponse;
+      console.log("Response: ", message);
+    } catch (err: unknown) {
+      const apiError = (err as AxiosError).response?.data;
+      const { error } = apiError as IErrorResponse;
+      console.log("Error:", error);
+    }
   };
 
   return (
