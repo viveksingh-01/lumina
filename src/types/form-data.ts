@@ -1,5 +1,6 @@
 export interface ISignupFormData {
   email: string;
+  name: string;
   password: string;
 }
 

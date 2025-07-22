@@ -49,6 +49,16 @@ const Signup: React.FC = () => {
             autoFocus={true}
           />
           <InputField
+            type="text"
+            name="name"
+            placeholder="Full name"
+            register={register("name", {
+              required: "Name is required",
+            })}
+            value={watch("name")}
+            error={errors.name?.message}
+          />
+          <InputField
             type="password"
             name="password"
             placeholder="Password"
