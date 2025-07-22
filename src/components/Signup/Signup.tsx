@@ -16,9 +16,8 @@ const Signup: React.FC = () => {
   } = useForm<ISignupFormData>();
 
   const submitForm: SubmitHandler<ISignupFormData> = async (formValues) => {
-    const { email, password } = formValues;
     try {
-      const res = await createAccount({ email, password });
+      const res = await createAccount(formValues);
       const { message } = res as ISuccessResponse;
       console.log("Response: ", message);
     } catch (err: unknown) {
