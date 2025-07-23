@@ -86,8 +86,14 @@ const SignupMultistep = () => {
                   value={watch("password")}
                   error={errors.password?.message}
                 />
-                <SubmitButton label="Create account" isSubmitting={isSubmitting} />
               </div>
+            )}
+            {step === 3 ? (
+              <SubmitButton label="Create account" isSubmitting={isSubmitting} />
+            ) : (
+              <button className="w-full flex items-center justify-center p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors">
+                Continue
+              </button>
             )}
           </div>
         </form>
