@@ -18,6 +18,7 @@ const SignupMultistep = () => {
   const [step, setStep] = useState(1);
 
   const next = () => setStep((s) => s + 1);
+  const back = () => setStep((s) => s - 1);
 
   const handleContinue = (e: any) => {
     e.preventDefault();
@@ -106,7 +107,11 @@ const SignupMultistep = () => {
                   Continue
                 </button>
               )}
-              {step !== 1 ? <button className="mt-4 text-md text-gray-500">Back</button> : null}
+              {step !== 1 ? (
+                <button onClick={back} className="mt-4 text-md text-gray-500">
+                  Back
+                </button>
+              ) : null}
             </div>
           </div>
         </form>
