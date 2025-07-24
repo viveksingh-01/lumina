@@ -17,6 +17,13 @@ const SignupMultistep = () => {
 
   const [step, setStep] = useState(1);
 
+  const next = () => setStep((s) => s + 1);
+
+  const handleContinue = (e: any) => {
+    e.preventDefault();
+    next();
+  };
+
   const submitForm: SubmitHandler<ISignupFormData> = async (formValues) => {
     try {
       const res = await createAccount(formValues);
@@ -91,7 +98,10 @@ const SignupMultistep = () => {
             {step === 3 ? (
               <SubmitButton label="Create account" isSubmitting={isSubmitting} />
             ) : (
-              <button className="w-full flex items-center justify-center p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors">
+              <button
+                  onClick={(e) => handleContinue(e)}
+                className="w-full flex items-center justify-center p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors"
+              >
                 Continue
               </button>
             )}
