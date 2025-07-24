@@ -95,16 +95,19 @@ const SignupMultistep = () => {
                 />
               </div>
             )}
-            {step === 3 ? (
-              <SubmitButton label="Create account" isSubmitting={isSubmitting} />
-            ) : (
-              <button
+            <div className="flex flex-col">
+              {step === 3 ? (
+                <SubmitButton label="Create account" isSubmitting={isSubmitting} />
+              ) : (
+                <button
                   onClick={(e) => handleContinue(e)}
-                className="w-full flex items-center justify-center p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors"
-              >
-                Continue
-              </button>
-            )}
+                  className="w-full flex items-center justify-center p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors"
+                >
+                  Continue
+                </button>
+              )}
+              {step !== 1 ? <button className="mt-4 text-md text-gray-500">Back</button> : null}
+            </div>
           </div>
         </form>
       </div>
