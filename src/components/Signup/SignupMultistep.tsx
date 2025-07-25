@@ -25,6 +25,11 @@ const SignupMultistep = () => {
     next();
   };
 
+  const handleBack = (e: any) => {
+    e.preventDefault();
+    back();
+  };
+
   const submitForm: SubmitHandler<ISignupFormData> = async (formValues) => {
     try {
       const res = await createAccount(formValues);
@@ -109,7 +114,7 @@ const SignupMultistep = () => {
               )}
               {step !== 1 ? (
                 <button
-                  onClick={back}
+                  onClick={(e) => handleBack(e)}
                   className="mt-4 text-md text-gray-500 hover:text-gray-700 hover:cursor-pointer transition-colors"
                 >
                   Back
