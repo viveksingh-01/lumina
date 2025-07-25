@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { createAccount } from "../../services/auth";
 import { ISignupFormData } from "../../types/form-data";
 import { IErrorResponse, ISuccessResponse } from "../../types/response";
@@ -128,6 +129,14 @@ const SignupMultistep = () => {
             </div>
           </div>
         </form>
+      </div>
+      <div className="my-3 text-center text-gray-600 tracking-wide">
+        <p>
+          Already have an account?{" "}
+          <span className="text-sky-600 hover:underline">
+            <Link to="/auth/log-in">Log in</Link>
+          </span>
+        </p>
       </div>
     </div>
   );
