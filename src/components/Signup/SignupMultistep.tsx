@@ -11,18 +11,23 @@ const SignupMultistep = () => {
   const {
     register,
     handleSubmit,
+    trigger,
     watch,
     formState: { errors, isSubmitting },
   } = useForm<ISignupFormData>();
 
   const [step, setStep] = useState(1);
+  const [showError, setShowError] = useState(false);
 
   const next = () => setStep((s) => s + 1);
   const back = () => setStep((s) => s - 1);
 
-  const handleContinue = (e: any) => {
+  const handleContinue = async (e: any, step: number) => {
     e.preventDefault();
-    next();
+    const field: "email" | "name" = step === 2 ? "name" : "email";
+    const isFieldValid = await trigger(field);
+    if (isFieldValid) next();
+    setShowError(!isFieldValid);
   };
 
   const handleBack = (e: any) => {
@@ -62,7 +67,7 @@ const SignupMultistep = () => {
                     },
                   })}
                   value={watch("email")}
-                  error={errors.email?.message}
+                  error={showError ? errors.email?.message : ""}
                   autoFocus={true}
                 />
               </div>
@@ -78,7 +83,7 @@ const SignupMultistep = () => {
                     required: "Name is required",
                   })}
                   value={watch("name")}
-                  error={errors.name?.message}
+                  error={showError ? errors.name?.message : ""}
                 />
               </div>
             )}
@@ -106,7 +111,7 @@ const SignupMultistep = () => {
                 <SubmitButton label="Create account" isSubmitting={isSubmitting} />
               ) : (
                 <button
-                  onClick={(e) => handleContinue(e)}
+                  onClick={(e) => handleContinue(e, step)}
                   className="w-full flex items-center justify-center p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors"
                 >
                   Continue
