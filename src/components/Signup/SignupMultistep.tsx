@@ -1,4 +1,5 @@
 import { AxiosError } from "axios";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -55,7 +56,7 @@ const SignupMultistep = () => {
         <form onSubmit={handleSubmit(submitForm)}>
           <div className="w-full max-w-md rounded-lg p-4 relative overflow-hidden">
             {step === 1 && (
-              <div key="step1">
+              <StepWrapper key="step1">
                 <h2 className="mb-7 text-lg text-center text-sky-700">First things first, enter your email.</h2>
                 <InputField
                   type="text"
@@ -72,11 +73,11 @@ const SignupMultistep = () => {
                   error={showError ? errors.email?.message : ""}
                   autoFocus={true}
                 />
-              </div>
+              </StepWrapper>
             )}
 
             {step === 2 && (
-              <div key="step2">
+              <StepWrapper key="step2">
                 <h2 className="mb-7 text-lg text-center text-sky-700">What should we call you?</h2>
                 <InputField
                   type="text"
@@ -88,11 +89,11 @@ const SignupMultistep = () => {
                   value={watch("name")}
                   error={showError ? errors.name?.message : ""}
                 />
-              </div>
+              </StepWrapper>
             )}
 
             {step === 3 && (
-              <div key="step3">
+              <StepWrapper key="step3">
                 <h2 className="mb-7 text-lg text-center text-sky-700">Almost there! Choose a secure password.</h2>
                 <InputField
                   type="password"
@@ -108,7 +109,7 @@ const SignupMultistep = () => {
                   value={watch("password")}
                   error={errors.password?.message}
                 />
-              </div>
+              </StepWrapper>
             )}
             <div className="flex flex-col">
               {step === 3 ? (
@@ -144,5 +145,18 @@ const SignupMultistep = () => {
     </div>
   );
 };
+
+function StepWrapper({ children }: { children: any }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 40 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -40 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default SignupMultistep;
