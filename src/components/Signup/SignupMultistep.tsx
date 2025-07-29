@@ -88,6 +88,7 @@ const SignupMultistep = () => {
                   })}
                   value={watch("name")}
                   error={showError ? errors.name?.message : ""}
+                  autoFocus={true}
                 />
               </StepWrapper>
             )}
@@ -110,6 +111,7 @@ const SignupMultistep = () => {
                   })}
                   value={watch("password")}
                   error={errors.password?.message}
+                  autoFocus={true}
                 />
               </StepWrapper>
             )}
