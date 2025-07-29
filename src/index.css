@@ -1,7 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import "tailwindcss";
 
 * {
-    box-sizing: border-box;
-    font-family: "Outfit", sans-serif;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+}
+
+.text-gradient-lumina {
+  background: linear-gradient(to right, #00c6ff, #0072ff, #8f00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-lumina-animated {
+  background: linear-gradient(270deg, #00c6ff, #0072ff, #8f00ff, #00c6ff);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 3s ease-in-out infinite;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
