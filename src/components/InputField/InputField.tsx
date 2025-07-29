@@ -24,7 +24,7 @@ const InputField: React.FC<InputFieldProps> = ({
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="mb-7 relative">
+    <div className="mb-7 relative w-full">
       <input
         type={type === "password" ? (showPassword ? "text" : "password") : type}
         {...register}

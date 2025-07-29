@@ -57,7 +57,7 @@ const SignupMultistep = () => {
           <div className="w-full max-w-md rounded-lg p-4 relative overflow-hidden">
             {step === 1 && (
               <StepWrapper key="step1">
-                <h2 className="mb-7 text-lg text-center text-sky-700">First things first, enter your email.</h2>
+                <h2 className="mb-7 text-lg text-center text-gradient-lumina">First things first, enter your email.</h2>
                 <InputField
                   type="text"
                   name="email"
@@ -78,7 +78,7 @@ const SignupMultistep = () => {
 
             {step === 2 && (
               <StepWrapper key="step2">
-                <h2 className="mb-7 text-lg text-center text-sky-700">What should we call you?</h2>
+                <h2 className="mb-7 text-lg text-center text-gradient-lumina">What should we call you?</h2>
                 <InputField
                   type="text"
                   name="name"
@@ -94,7 +94,9 @@ const SignupMultistep = () => {
 
             {step === 3 && (
               <StepWrapper key="step3">
-                <h2 className="mb-7 text-lg text-center text-sky-700">Almost there! Choose a secure password.</h2>
+                <h2 className="mb-7 text-lg text-center text-gradient-lumina">
+                  Almost there! Choose a secure password.
+                </h2>
                 <InputField
                   type="password"
                   name="password"
