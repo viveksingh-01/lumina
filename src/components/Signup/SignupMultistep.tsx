@@ -8,6 +8,7 @@ import { ISignupFormData } from "../../types/form-data";
 import { IErrorResponse, ISuccessResponse } from "../../types/response";
 import InputField from "../InputField/InputField";
 import SubmitButton from "../SubmitButton/SubmitButton";
+import Success from "../Success/Success";
 
 const SignupMultistep = () => {
   const {
@@ -20,6 +21,7 @@ const SignupMultistep = () => {
 
   const [step, setStep] = useState(1);
   const [showError, setShowError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const next = () => setStep((s) => s + 1);
   const back = () => setStep((s) => s - 1);
@@ -42,6 +44,7 @@ const SignupMultistep = () => {
       const res = await createAccount(formValues);
       const { message } = res as ISuccessResponse;
       console.log("Response: ", message);
+      setSuccess(true);
     } catch (err: unknown) {
       const apiError = (err as AxiosError).response?.data;
       const { error } = apiError as IErrorResponse;
@@ -49,7 +52,9 @@ const SignupMultistep = () => {
     }
   };
 
-  return (
+  return success ? (
+    <Success name="Brad" />
+  ) : (
     <div className="min-h-screen flex flex-col items-center pt-20 bg-gray-50 p-4">
       <h1 className="text-3xl p-2 mb-9">Create an account</h1>
       <div>
