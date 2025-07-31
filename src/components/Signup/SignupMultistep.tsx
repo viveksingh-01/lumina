@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { createAccount } from "../../services/auth";
 import { ISignupFormData } from "../../types/form-data";
 import { IErrorResponse, ISuccessResponse } from "../../types/response";
+import { IUserDetails } from "../../types/user-details";
 import InputField from "../InputField/InputField";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import Success from "../Success/Success";
@@ -21,6 +22,7 @@ const SignupMultistep = () => {
 
   const [step, setStep] = useState(1);
   const [showError, setShowError] = useState(false);
+  const [userDetails, setUserDetails] = useState<IUserDetails>({} as IUserDetails);
   const [success, setSuccess] = useState(false);
 
   const next = () => setStep((s) => s + 1);
@@ -42,8 +44,8 @@ const SignupMultistep = () => {
   const submitForm: SubmitHandler<ISignupFormData> = async (formValues) => {
     try {
       const res = await createAccount(formValues);
-      const { message } = res as ISuccessResponse;
-      console.log("Response: ", message);
+      const { data } = res as ISuccessResponse;
+      setUserDetails(data);
       setSuccess(true);
     } catch (err: unknown) {
       const apiError = (err as AxiosError).response?.data;
@@ -53,7 +55,7 @@ const SignupMultistep = () => {
   };
 
   return success ? (
-    <Success name="Brad" />
+    <Success name={userDetails.name} />
   ) : (
     <div className="min-h-screen flex flex-col items-center pt-20 bg-gray-50 p-4">
       <h1 className="text-3xl p-2 mb-9">Create an account</h1>
