@@ -1,11 +1,9 @@
+import { IUserDetails } from "./user-details";
+
 export interface ISuccessResponse {
   success: boolean;
   message: string;
-  data: {
-    id: string;
-    email: string;
-    name: string;
-  };
+  data: IUserDetails;
 }
 
 export interface IErrorResponse {
