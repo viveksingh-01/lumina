@@ -1,8 +1,9 @@
 import { AxiosError } from "axios";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 import { createAccount } from "../../services/auth";
 import { ISignupFormData } from "../../types/form-data";
 import { IErrorResponse, ISuccessResponse } from "../../types/response";
@@ -24,6 +25,7 @@ const SignupMultistep = () => {
   const [showError, setShowError] = useState(false);
   const [userDetails, setUserDetails] = useState<IUserDetails>({} as IUserDetails);
   const [success, setSuccess] = useState(false);
+  const userContext = useContext(UserContext);
 
   const next = () => setStep((s) => s + 1);
   const back = () => setStep((s) => s - 1);
@@ -46,6 +48,8 @@ const SignupMultistep = () => {
       const res = await createAccount(formValues);
       const { data } = res as ISuccessResponse;
       setUserDetails(data);
+      const { setUser } = userContext;
+      setUser(data);
       setSuccess(true);
     } catch (err: unknown) {
       const apiError = (err as AxiosError).response?.data;
