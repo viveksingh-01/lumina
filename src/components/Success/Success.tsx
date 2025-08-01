@@ -1,14 +1,14 @@
 import Lottie from "lottie-react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import successAnimation from "../../animations/success-check.json";
+import { UserContext } from "../../context/UserContext";
 
-type ISuccessProps = {
-  name: string;
-};
-
-const Success: React.FC<ISuccessProps> = ({ name }) => {
-  const [firstName] = name.split(" ");
+const Success: React.FC = () => {
   const navigate = useNavigate();
+  const userContext = useContext(UserContext);
+  const { user } = userContext;
+  const [firstName] = user?.name.split(" ");
 
   const handleClick = () => {
     navigate("/");

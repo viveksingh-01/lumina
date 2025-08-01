@@ -7,7 +7,6 @@ import { UserContext } from "../../context/UserContext";
 import { createAccount } from "../../services/auth";
 import { ISignupFormData } from "../../types/form-data";
 import { IErrorResponse, ISuccessResponse } from "../../types/response";
-import { IUserDetails } from "../../types/user-details";
 import InputField from "../InputField/InputField";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import Success from "../Success/Success";
@@ -23,7 +22,6 @@ const SignupMultistep = () => {
 
   const [step, setStep] = useState(1);
   const [showError, setShowError] = useState(false);
-  const [userDetails, setUserDetails] = useState<IUserDetails>({} as IUserDetails);
   const [success, setSuccess] = useState(false);
   const userContext = useContext(UserContext);
 
@@ -47,7 +45,6 @@ const SignupMultistep = () => {
     try {
       const res = await createAccount(formValues);
       const { data } = res as ISuccessResponse;
-      setUserDetails(data);
       const { setUser } = userContext;
       setUser(data);
       setSuccess(true);
@@ -59,7 +56,7 @@ const SignupMultistep = () => {
   };
 
   return success ? (
-    <Success name={userDetails.name} />
+    <Success />
   ) : (
     <div className="min-h-screen flex flex-col items-center pt-20 bg-gray-50 p-4">
       <h1 className="text-3xl p-2 mb-9">Create an account</h1>
