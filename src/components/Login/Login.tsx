@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import { motion } from "framer-motion";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { login } from "../../services/auth";
 import { ILoginFormData } from "../../types/form-data";
@@ -11,6 +11,7 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 
 const Login: React.FC = () => {
   const { setUser } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -23,7 +24,7 @@ const Login: React.FC = () => {
       const res = await login(formValues);
       const { data } = res as ISuccessResponse;
       setUser(data);
-      console.log(data);
+      navigate("/");
     } catch (err: unknown) {
       const apiError = (err as AxiosError).response?.data;
       const { error } = apiError as IErrorResponse;
