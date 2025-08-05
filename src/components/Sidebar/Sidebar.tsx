@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { assets } from "../../assets/assets";
+import { useAuth } from "../../hooks/useAuth";
 import "./Sidebar.css";
 
 type SidebarProps = {
@@ -10,6 +11,7 @@ type SidebarProps = {
 const Sidebar: React.FC<SidebarProps> = ({ promptHistory, setCurrentPrompt }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isExpansionSustained, setIsExpansionSustained] = useState(false);
+  const { isAuthorized } = useAuth();
 
   function handleToggleOnClick(): void {
     if (!isExpansionSustained) {
@@ -38,24 +40,31 @@ const Sidebar: React.FC<SidebarProps> = ({ promptHistory, setCurrentPrompt }) =>
         <button onClick={handleToggleOnClick} className="p-3 rounded-full hover:bg-[#e2e6eb] cursor-pointer">
           <img src={assets.menu_icon} style={{ width: 20 }} alt="menu icon" />
         </button>
-        {isExpanded && promptHistory.length > 0 && (
-          <div className="my-5 flex flex-col">
-            <div className="mt-5 ml-3 flex gap-2">
-              <img src={assets.history_icon} style={{ width: 24 }} alt="message icon" />
-              <p className="text-lg mb-2">Recent</p>
-            </div>
-            {promptHistory.map((prompt, index) => (
-              <div
-                key={index}
-                onClick={() => setCurrentPrompt(prompt)}
-                className="ml-1 min-w-3xs p-3 flex justify-start gap-1 rounded-2xl text-[#282828] hover:bg-[#e2e6eb] cursor-pointer"
-              >
-                <img src={assets.message_icon} style={{ width: 24 }} alt="message icon" />
-                <p>{prompt}</p>
+        {isExpanded &&
+          (isAuthorized ? (
+            promptHistory.length > 0 && (
+              <div className="my-5 flex flex-col">
+                <div className="mt-5 ml-3 flex gap-2">
+                  <img src={assets.history_icon} style={{ width: 24 }} alt="message icon" />
+                  <p className="text-lg mb-2">Recent</p>
+                </div>
+                {promptHistory.map((prompt, index) => (
+                  <div
+                    key={index}
+                    onClick={() => setCurrentPrompt(prompt)}
+                    className="ml-1 min-w-3xs p-3 flex justify-start gap-1 rounded-2xl text-[#282828] hover:bg-[#e2e6eb] cursor-pointer"
+                  >
+                    <img src={assets.message_icon} style={{ width: 24 }} alt="message icon" />
+                    <p>{prompt}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        )}
+            )
+          ) : (
+            <div className="mt-12 px-3 py-5 bg-[#c4c7c56b] text-md rounded-3xl">
+              <p className="px-4 text-gray-900">Log in to see your recent queries here.</p>
+            </div>
+          ))}
       </div>
     </aside>
   );
