@@ -2,7 +2,10 @@ import { Outlet } from "react-router-dom";
 
 const Auth: React.FC = () => {
   return (
-    <main>
+    <main className="min-h-screen bg-gray-50">
+      <nav className="p-5 ml-[88px] mb-8">
+        <p className="text-2xl text-[#585858]">Lumina</p>
+      </nav>
       <Outlet />
     </main>
   );
