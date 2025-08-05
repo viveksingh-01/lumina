@@ -68,7 +68,7 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
           ) : (
             <div className="mx-auto text-5xl font-bold text-center text-[#c4c7c5]">
               <h3>
-                Meet <span className="lumina-text">Lumina</span>,
+                Meet <span className="text-gradient-lumina">Lumina</span>,
               </h3>
               <h3>your personal AI assistant.</h3>
             </div>
