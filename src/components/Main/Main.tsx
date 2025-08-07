@@ -47,10 +47,12 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
 
   return (
     <div className="w-full p-5 px-7">
-      <nav className="flex justify-between items-center pr-5">
+      <nav className="flex justify-between items-center pr-2">
         <p className="text-2xl text-[#585858]">Lumina</p>
         <Link to="/auth/log-in">
-          <span className="p-3 px-5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">Log in</span>
+          <span className="py-2 px-4 rounded-full text-sm tracking-wide text-gray-50 bg-gray-900 hover:bg-gray-800 transition-colors">
+            Log in
+          </span>
         </Link>
       </nav>
       <div className="h-[calc(100vh-80px)] flex flex-col">
