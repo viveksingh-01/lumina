@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { useAuth } from "../../hooks/useAuth";
 import "./Sidebar.css";
@@ -62,7 +63,12 @@ const Sidebar: React.FC<SidebarProps> = ({ promptHistory, setCurrentPrompt }) =>
             )
           ) : (
             <div className="mt-12 px-3 py-5 bg-[#c4c7c56b] text-md rounded-3xl">
-              <p className="px-4 text-gray-900">Log in to see your recent queries here.</p>
+              <p className="mb-6 px-4 text-gray-900">Log in to see your recent queries here.</p>
+              <Link to="/auth/log-in">
+                <span className="py-3 px-4 rounded-full text-sky-700 hover:bg-gray-300 transition-colors hover:cursor-pointer">
+                  Log in
+                </span>
+              </Link>
             </div>
           ))}
       </div>
