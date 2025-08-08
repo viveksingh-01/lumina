@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth.js";
 import { getResponse } from "../../services/chat-service.js";
+import Navbar from "../Navbar/Navbar.js";
 import PromptInput from "../PromptInput/PromptInput.jsx";
 import "./Main.css";
 
@@ -49,21 +49,7 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
 
   return (
     <div className="w-full p-5 px-7">
-      <nav className="flex justify-between items-center pr-2">
-        <p className="text-2xl text-[#585858]">Lumina</p>
-        <div>
-          <Link to="/auth/log-in">
-            <span className="py-2 px-4 rounded-full text-sm tracking-wide text-gray-50 bg-gray-900 hover:bg-gray-800 transition-colors">
-              Log in
-            </span>
-          </Link>
-          <Link to="/auth/create-account">
-            <span className="ml-4 py-2 px-4 rounded-full text-sm tracking-wide bg-[#f0f4f9] hover:bg-gray-200 transition">
-              Sign up for free
-            </span>
-          </Link>
-        </div>
-      </nav>
+      <Navbar />
       <div className="h-[calc(100vh-80px)] flex flex-col">
         <section className="grow flex justify-center items-center overflow-y-auto">
           {showContent ? (
