@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
-import { getResponse } from "../../config/gemini.js";
+import { useAuth } from "../../hooks/useAuth.js";
+import { getResponse } from "../../services/chat-service.js";
 import PromptInput from "../PromptInput/PromptInput.jsx";
 import "./Main.css";
 
@@ -15,6 +16,7 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   const [content, setContent] = useState<string>("");
   const [promptToDisplay, setPromptToDisplay] = useState<string>("");
   const [showContent, setShowContent] = useState<boolean>(false);
+  const { user } = useAuth();
 
   /**
    * Generates content based on the currentPrompt (prop passed from App component)
@@ -28,12 +30,12 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   async function generateContent(prompt: string) {
     setPromptToDisplay(prompt);
     setShowContent(true);
-    const response = await getResponse(prompt);
-    let contentString = "";
-    for await (const chunk of response) {
-      contentString += chunk.text;
-      setContent(contentString);
-    }
+    const payload = {
+      message: prompt,
+      userId: user.email,
+    };
+    const response = await getResponse(payload);
+    setContent(response);
   }
 
   function handleContentGeneration(prompt: string): void {
