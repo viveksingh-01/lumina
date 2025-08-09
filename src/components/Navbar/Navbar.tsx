@@ -1,3 +1,4 @@
+import { User } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
@@ -13,7 +14,10 @@ const Navbar: React.FC = () => {
     <nav className="flex justify-between items-center pr-2">
       <p className="text-2xl text-[#585858]">Lumina</p>
       {isAuthorized ? (
-        <p>{firstName}</p>
+        <div className="flex gap-1 items-center">
+          <User size={20} strokeWidth={1.25} />
+          <p className="text-lg tracking-wide text-[#1b1c1d]">{firstName}</p>
+        </div>
       ) : (
         <div>
           <Link to="/auth/log-in">
