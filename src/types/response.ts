@@ -9,3 +9,8 @@ export interface ISuccessResponse {
 export interface IErrorResponse {
   error: string;
 }
+
+export interface IUserDetailsResponse {
+  success: boolean;
+  data: IUserDetails;
+}
