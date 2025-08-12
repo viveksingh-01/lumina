@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useAuth } from "../../hooks/useAuth.js";
+import { getUserDetails } from "../../services/auth.js";
 import { getResponse } from "../../services/chat-service.js";
+import { IUserDetailsResponse } from "../../types/response.js";
 import Navbar from "../Navbar/Navbar.js";
 import PromptInput from "../PromptInput/PromptInput.jsx";
 import "./Main.css";
@@ -16,7 +18,11 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   const [content, setContent] = useState<string>("");
   const [promptToDisplay, setPromptToDisplay] = useState<string>("");
   const [showContent, setShowContent] = useState<boolean>(false);
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+
+  useEffect(() => {
+    fetchAndStoreUserDetails();
+  }, []);
 
   /**
    * Generates content based on the currentPrompt (prop passed from App component)
@@ -26,6 +32,12 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
       generateContent(currentPrompt);
     }
   }, [currentPrompt]);
+
+  async function fetchAndStoreUserDetails() {
+    const res = await getUserDetails();
+    const { data } = res as IUserDetailsResponse;
+    setUser(data);
+  }
 
   async function generateContent(prompt: string) {
     setPromptToDisplay(prompt);
