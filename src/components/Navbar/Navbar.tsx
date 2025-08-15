@@ -1,15 +1,31 @@
+import { AxiosError } from "axios";
 import { UserCircle2 } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { logout } from "../../services/auth";
+import { IErrorResponse } from "../../types/response";
+import { IUserDetails } from "../../types/user-details";
 
 const Navbar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { isAuthorized, user } = useAuth();
+  const { isAuthorized, user, setUser } = useAuth();
   let firstName: string = "";
   if (user?.name) {
     firstName = user.name.split(" ")[0];
   }
+
+  const handleLogout = async () => {
+    try {
+      const res = await logout();
+      setUser({} as IUserDetails);
+      console.log(res);
+    } catch (err) {
+      const apiError = (err as AxiosError).response?.data;
+      const { error } = apiError as IErrorResponse;
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <nav className="flex justify-between items-center pr-2">
@@ -21,7 +37,10 @@ const Navbar: React.FC = () => {
             <UserCircle2 size={28} strokeWidth={1.25} />
           </div>
           {isDropdownOpen && (
-            <div className="absolute w-36 top-14 right-9 z-10 px-4 py-2 text-sm tracking-wide text-gray-700 hover:bg-gray-100 hover:cursor-pointer rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5">
+            <div
+              onClick={handleLogout}
+              className="absolute w-36 top-14 right-9 z-10 px-4 py-2 text-md tracking-wide text-gray-700 hover:bg-gray-100 hover:cursor-pointer rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5"
+            >
               Sign out
             </div>
           )}
