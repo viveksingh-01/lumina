@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { UserCircle2 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { logout } from "../../services/auth";
@@ -8,14 +8,31 @@ import { IErrorResponse } from "../../types/response";
 import { IUserDetails } from "../../types/user-details";
 
 const Navbar: React.FC = () => {
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { isAuthorized, user, setUser } = useAuth();
+
+  useEffect(() => {
+    function handleOutsideClick(event: MouseEvent) {
+      const target = event.target as Node;
+      if (dropdownRef.current && !dropdownRef.current?.contains(target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [dropdownRef]);
+
   let firstName: string = "";
   if (user?.name) {
     firstName = user.name.split(" ")[0];
   }
 
   const handleLogout = async () => {
+    setIsDropdownOpen(!isDropdownOpen);
     try {
       const res = await logout();
       setUser({} as IUserDetails);
@@ -38,8 +55,9 @@ const Navbar: React.FC = () => {
           </div>
           {isDropdownOpen && (
             <div
+              ref={dropdownRef}
               onClick={handleLogout}
-              className="absolute w-36 top-14 right-9 z-10 px-4 py-2 text-md tracking-wide text-gray-700 hover:bg-gray-100 hover:cursor-pointer rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5"
+              className="absolute w-36 top-15 right-9 z-10 px-4 py-2 text-center text-sm tracking-wide text-gray-700 hover:bg-gray-100 hover:cursor-pointer rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5"
             >
               Sign out
             </div>
