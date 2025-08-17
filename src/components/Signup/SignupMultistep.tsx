@@ -59,93 +59,93 @@ const SignupMultistep = () => {
     <Success />
   ) : (
     <div className="p-4 flex flex-col items-center">
-      <h1 className="text-3xl p-2 mb-9">Create an account</h1>
-      <div>
+      <h1 className="text-2xl lg:text-3xl p-2 mb-9">Create an account</h1>
+      <section className="w-full max-w-[320px] lg:max-w-[360px]">
         <form onSubmit={handleSubmit(submitForm)}>
-          <div className="w-full max-w-md rounded-lg p-4 relative overflow-hidden">
-            {step === 1 && (
-              <StepWrapper key="step1">
-                <h2 className="mb-7 text-lg text-center text-gradient-lumina">First things first, enter your email.</h2>
-                <InputField
-                  type="text"
-                  name="email"
-                  placeholder="Email address"
-                  register={register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^\S+@\S+$/i,
-                      message: "Invalid email address",
-                    },
-                  })}
-                  value={watch("email")}
-                  error={showError ? errors.email?.message : ""}
-                  autoFocus={true}
-                />
-              </StepWrapper>
-            )}
+          {step === 1 && (
+            <StepWrapper key="step1">
+              <h2 className="mb-7 lg:text-lg text-center text-gradient-lumina">
+                First things first, enter your email.
+              </h2>
+              <InputField
+                type="text"
+                name="email"
+                placeholder="Email address"
+                register={register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^\S+@\S+$/i,
+                    message: "Invalid email address",
+                  },
+                })}
+                value={watch("email")}
+                error={showError ? errors.email?.message : ""}
+                autoFocus={true}
+              />
+            </StepWrapper>
+          )}
 
-            {step === 2 && (
-              <StepWrapper key="step2">
-                <h2 className="mb-7 text-lg text-center text-gradient-lumina">What should we call you?</h2>
-                <InputField
-                  type="text"
-                  name="name"
-                  placeholder="Full name"
-                  register={register("name", {
-                    required: "Name is required",
-                  })}
-                  value={watch("name")}
-                  error={showError ? errors.name?.message : ""}
-                  autoFocus={true}
-                />
-              </StepWrapper>
-            )}
+          {step === 2 && (
+            <StepWrapper key="step2">
+              <h2 className="mb-7 lg:text-lg text-center text-gradient-lumina">What should we call you?</h2>
+              <InputField
+                type="text"
+                name="name"
+                placeholder="Full name"
+                register={register("name", {
+                  required: "Name is required",
+                })}
+                value={watch("name")}
+                error={showError ? errors.name?.message : ""}
+                autoFocus={true}
+              />
+            </StepWrapper>
+          )}
 
-            {step === 3 && (
-              <StepWrapper key="step3">
-                <h2 className="mb-7 text-lg text-center text-gradient-lumina">
-                  Almost there! Choose a secure password.
-                </h2>
-                <InputField
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  register={register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 8,
-                      message: "Password must be at least 8 characters long",
-                    },
-                  })}
-                  value={watch("password")}
-                  error={errors.password?.message}
-                  autoFocus={true}
-                />
-              </StepWrapper>
+          {step === 3 && (
+            <StepWrapper key="step3">
+              <h2 className="mb-7 lg:text-lg text-center text-gradient-lumina">
+                Almost there! Choose a secure password.
+              </h2>
+              <InputField
+                type="password"
+                name="password"
+                placeholder="Password"
+                register={register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters long",
+                  },
+                })}
+                value={watch("password")}
+                error={errors.password?.message}
+                autoFocus={true}
+              />
+            </StepWrapper>
+          )}
+          <div className="flex flex-col">
+            {step === 3 ? (
+              <SubmitButton label="Create account" isSubmitting={isSubmitting} />
+            ) : (
+              <button
+                onClick={(e) => handleContinue(e, step)}
+                className="w-full flex items-center justify-center p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors"
+              >
+                Continue
+              </button>
             )}
-            <div className="flex flex-col">
-              {step === 3 ? (
-                <SubmitButton label="Create account" isSubmitting={isSubmitting} />
-              ) : (
-                <button
-                  onClick={(e) => handleContinue(e, step)}
-                  className="w-full flex items-center justify-center p-4 rounded-full bg-gray-900 text-white tracking-wide hover:cursor-pointer hover:bg-gray-800 transition-colors"
-                >
-                  Continue
-                </button>
-              )}
-              {step !== 1 ? (
-                <button
-                  onClick={(e) => handleBack(e)}
-                  className="mt-4 text-md text-gray-500 hover:text-gray-700 hover:cursor-pointer transition-colors"
-                >
-                  Back
-                </button>
-              ) : null}
-            </div>
+            {step !== 1 ? (
+              <button
+                onClick={(e) => handleBack(e)}
+                className="mt-4 text-md text-gray-500 hover:text-gray-700 hover:cursor-pointer transition-colors"
+              >
+                Back
+              </button>
+            ) : null}
           </div>
         </form>
-      </div>
+      </section>
       <div className="my-3 text-center text-gray-600 tracking-wide">
         <p>
           Already have an account?{" "}

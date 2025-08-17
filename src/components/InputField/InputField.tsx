@@ -24,12 +24,12 @@ const InputField: React.FC<InputFieldProps> = ({
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="mb-7 relative w-full">
+    <div className="mb-5 ml:mb-7 relative w-full">
       <input
         type={type === "password" ? (showPassword ? "text" : "password") : type}
         {...register}
         className={`
-          w-[360px] px-4 py-3 border-2 border-gray-300 rounded-full text-lg outline-sky-600
+          w-full px-4 py-3 border-2 border-gray-300 rounded-full text-lg outline-sky-600
           ${error && "border-red-600 outline-red-600"}
         `}
         onFocus={() => setFocused(true)}

@@ -35,7 +35,7 @@ const Sidebar: React.FC<SidebarProps> = ({ promptHistory, setCurrentPrompt }) =>
     <aside
       onMouseEnter={() => handleToggleOnHover(true)}
       onMouseLeave={() => handleToggleOnHover(false)}
-      className={`sidebar ${isExpanded ? "expanded" : ""}`}
+      className={`hidden lg:inline-flex sidebar ${isExpanded ? "expanded" : ""}`}
     >
       <div className="top">
         <button onClick={handleToggleOnClick} className="p-3 rounded-full hover:bg-[#e2e6eb] cursor-pointer">

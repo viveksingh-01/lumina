@@ -45,8 +45,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center pr-2">
-      <p className="text-2xl text-[#585858]">Lumina</p>
+    <nav className="lg:py-2 flex justify-between items-center">
+      <p className="text-xl lg:text-2xl text-[#585858]">Lumina</p>
       {isAuthorized ? (
         <div className="flex gap-1.5 items-center">
           <p className="text-lg tracking-wide text-[#1b1c1d]">{firstName}</p>
@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
             <div
               ref={dropdownRef}
               onClick={handleLogout}
-              className="absolute w-36 top-15 right-9 z-10 px-4 py-2 text-center text-sm tracking-wide text-gray-700 hover:bg-gray-100 hover:cursor-pointer rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5"
+              className="absolute w-32 top-12 right-4 lg:top-16 lg:right-8 z-10 px-4 py-2 text-center text-sm tracking-wide text-gray-700 hover:bg-gray-100 hover:cursor-pointer rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5"
             >
               Sign out
             </div>

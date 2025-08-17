@@ -66,7 +66,7 @@ const PromptInput: React.FC<PromptInputProps> = ({ handleContentGeneration, prom
 
   return (
     <section className="w-full flex flex-col items-center justify-center">
-      <div className="input-container w-[800px] p-2 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
+      <div className="input-container w-full max-w-[800px] p-2 flex justify-between gap-4 bg-[#f0f4f9] text-lg rounded-full">
         <input
           type="text"
           value={prompt}

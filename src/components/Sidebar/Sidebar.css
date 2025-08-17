@@ -1,7 +1,6 @@
 .sidebar {
   padding: 1rem;
   background-color: #f0f4f9;
-  display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
   min-width: 80px;

@@ -34,9 +34,9 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center p-4">
-      <h1 className="text-3xl p-2 mb-9">Welcome back!</h1>
-      <div>
-        <h2 className="mb-7 text-lg text-center text-gradient-lumina">Enter your email and password to continue.</h2>
+      <h1 className="text-2xl lg:text-3xl p-2 mb-9">Welcome back!</h1>
+      <section className="w-full max-w-[320px] lg:max-w-[360px]">
+        <h2 className="mb-7 lg:text-lg text-center text-gradient-lumina">Enter your email and password to continue.</h2>
         <form onSubmit={handleSubmit(submitForm)}>
           <motion.div
             initial={{ opacity: 0, x: 40 }}
@@ -70,7 +70,7 @@ const Login: React.FC = () => {
             </span>
           </p>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
