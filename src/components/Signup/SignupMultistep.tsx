@@ -43,9 +43,10 @@ const SignupMultistep = () => {
 
   const submitForm: SubmitHandler<ISignupFormData> = async (formValues) => {
     try {
-      const res = await createAccount(formValues);
-      const { data } = res as ISuccessResponse;
+      const res = (await createAccount(formValues)) as ISuccessResponse;
+      const { data } = res;
       const { setUser } = userContext;
+      localStorage.setItem("auth_token", res.token);
       setUser(data);
       setSuccess(true);
     } catch (err: unknown) {

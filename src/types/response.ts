@@ -3,6 +3,7 @@ import { IUserDetails } from "./user-details";
 export interface ISuccessResponse {
   success: boolean;
   message: string;
+  token: string;
   data: IUserDetails;
 }
 

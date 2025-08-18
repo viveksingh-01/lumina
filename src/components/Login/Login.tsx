@@ -21,8 +21,9 @@ const Login: React.FC = () => {
 
   const submitForm: SubmitHandler<ILoginFormData> = async (formValues) => {
     try {
-      const res = await login(formValues);
-      const { data } = res as ISuccessResponse;
+      const res = (await login(formValues)) as ISuccessResponse;
+      const { data } = res;
+      localStorage.setItem("auth_token", res.token);
       setUser(data);
       navigate("/");
     } catch (err: unknown) {

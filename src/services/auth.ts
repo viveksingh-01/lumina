@@ -6,12 +6,12 @@ import { IUserDetailsResponse } from "../types/response";
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export async function createAccount(body: ISignupRequestPayload) {
-  const response = await axios.post(`${BASE_URL}/register`, body, { withCredentials: true });
+  const response = await axios.post(`${BASE_URL}/register`, body);
   return response?.data;
 }
 
 export async function login(payload: ILoginFormData) {
-  const response = await axios.post(`${BASE_URL}/login`, payload, { withCredentials: true });
+  const response = await axios.post(`${BASE_URL}/login`, payload);
   return response?.data;
 }
 
