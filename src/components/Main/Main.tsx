@@ -62,7 +62,7 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   return (
     <div className="w-full p-3 md-py-5 md:px-7">
       <Navbar />
-      <div className="h-[calc(100vh-56px)] md:h-[calc(100vh-80px)] flex flex-col">
+      <div className="h-[calc(100vh-80px)] flex flex-col">
         <section className="grow flex justify-center items-center overflow-y-auto">
           {showContent ? (
             <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">

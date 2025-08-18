@@ -1,16 +1,12 @@
-import { AxiosError } from "axios";
 import { UserCircle2 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { logout } from "../../services/auth";
-import { IErrorResponse } from "../../types/response";
-import { IUserDetails } from "../../types/user-details";
 
 const Navbar: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { isAuthorized, user, setUser } = useAuth();
+  const { isAuthorized, user } = useAuth();
 
   useEffect(() => {
     function handleOutsideClick(event: MouseEvent) {
@@ -34,13 +30,9 @@ const Navbar: React.FC = () => {
   const handleLogout = async () => {
     setIsDropdownOpen(!isDropdownOpen);
     try {
-      const res = await logout();
-      setUser({} as IUserDetails);
-      console.log(res);
+      localStorage.removeItem("auth_token");
     } catch (err) {
-      const apiError = (err as AxiosError).response?.data;
-      const { error } = apiError as IErrorResponse;
-      console.error("Error:", error);
+      console.error("Error:", err);
     }
   };
 

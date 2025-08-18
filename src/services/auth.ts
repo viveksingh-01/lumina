@@ -21,8 +21,3 @@ export async function getUserDetails(): Promise<IUserDetailsResponse> {
   });
   return response?.data;
 }
-
-export async function logout() {
-  const response = await axios.post(`${BASE_URL}/api/logout`, null, { withCredentials: true });
-  return response?.data;
-}
