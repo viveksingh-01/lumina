@@ -1,4 +1,4 @@
-import { UserCircle2 } from "lucide-react";
+import { User } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
@@ -40,16 +40,19 @@ const Navbar: React.FC = () => {
     <nav className="lg:py-2 flex justify-between items-center">
       <p className="text-xl lg:text-2xl text-[#585858]">Lumina</p>
       {isAuthorized ? (
-        <div className="flex gap-1.5 items-center">
-          <p className="text-lg tracking-wide text-[#1b1c1d]">{firstName}</p>
-          <div onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="relative inline-block">
-            <UserCircle2 size={28} strokeWidth={1.25} />
+        <div>
+          <div
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="lg:mr-4 relative flex gap-1.5 items-center hover:cursor-pointer"
+          >
+            <User size={18} strokeWidth={2} />
+            <p className="text-lg tracking-wide text-[#1b1c1d]">{firstName}</p>
           </div>
           {isDropdownOpen && (
             <div
               ref={dropdownRef}
               onClick={handleLogout}
-              className="absolute w-32 top-12 right-4 lg:top-16 lg:right-8 z-10 px-4 py-2 text-center text-sm tracking-wide text-gray-700 hover:bg-gray-100 hover:cursor-pointer rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5"
+              className="absolute w-32 top-12 right-4 lg:top-16 lg:right-8 z-10 px-4 py-2 text-center text-sm tracking-wide text-gray-700 hover:bg-gray-100 rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5"
             >
               Sign out
             </div>
