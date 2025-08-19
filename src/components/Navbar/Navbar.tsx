@@ -37,13 +37,13 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="lg:py-2 flex justify-between items-center">
+    <nav className="px-2 lg:py-2 lg:px-4 flex justify-between items-center">
       <p className="text-xl lg:text-2xl text-[#585858]">Lumina</p>
       {isAuthorized ? (
         <div>
           <div
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="lg:mr-4 relative flex gap-1.5 items-center hover:cursor-pointer"
+            className="lg:mr-4 relative flex gap-1 items-center hover:cursor-pointer"
           >
             <User size={18} strokeWidth={2} />
             <p className="text-lg tracking-wide text-[#1b1c1d]">{firstName}</p>
