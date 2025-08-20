@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Main from "../../components/Main/Main";
-import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Home: React.FC = () => {
   // Keeps the log of all the prompts
@@ -9,7 +8,7 @@ const Home: React.FC = () => {
   const [currentPrompt, setCurrentPrompt] = useState<string | null>(null);
   return (
     <main className="flex flex-nowrap">
-      <Sidebar promptHistory={promptHistory} setCurrentPrompt={setCurrentPrompt} />
+      {/* <Sidebar promptHistory={promptHistory} setCurrentPrompt={setCurrentPrompt} /> */}
       <Main currentPrompt={currentPrompt} promptHistory={promptHistory} setPromptHistory={setPromptHistory} />
     </main>
   );
