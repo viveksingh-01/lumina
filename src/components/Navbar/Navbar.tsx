@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="px-2 lg:py-2 lg:px-4 flex justify-between items-center">
+    <nav className="p-2 flex justify-between items-center">
       <p className="text-xl lg:text-2xl text-[#585858]">Lumina</p>
       {isAuthorized ? (
         <div>

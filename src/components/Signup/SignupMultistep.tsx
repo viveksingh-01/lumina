@@ -147,7 +147,7 @@ const SignupMultistep = () => {
           </div>
         </form>
       </section>
-      <div className="my-3 text-center text-gray-600 tracking-wide">
+      <div className="my-7 text-center text-gray-600 tracking-wide">
         <p>
           Already have an account?{" "}
           <span className="text-sky-600 hover:underline">
