@@ -16,8 +16,9 @@ export async function login(payload: ILoginFormData) {
 }
 
 export async function getUserDetails(): Promise<IUserDetailsResponse> {
+  const token = localStorage.getItem("auth_token");
   const response = await axios.get(`${BASE_URL}/api/me`, {
-    headers: { Authorization: localStorage.getItem("auth_token") },
+    headers: { Authorization: `Bearer ${token}` },
   });
   return response?.data;
 }
