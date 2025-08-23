@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login.js";
 import SignupMultistep from "./components/Signup/SignupMultistep.js";
 import { UserProvider } from "./context/UserContext.js";
@@ -14,6 +14,7 @@ const App: React.FC = () => {
           <Route path="create-account" Component={SignupMultistep} />;
           <Route path="log-in" Component={Login} />;
         </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </UserProvider>
   );
