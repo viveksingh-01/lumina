@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { motion } from "framer-motion";
 import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { login } from "../../services/auth";
@@ -24,12 +25,13 @@ const Login: React.FC = () => {
       const res = (await login(formValues)) as ISuccessResponse;
       const { data } = res;
       localStorage.setItem("auth_token", res.token);
+      toast.success("You've logged-in successfully!");
       setUser(data);
       navigate("/");
     } catch (err: unknown) {
       const apiError = (err as AxiosError).response?.data;
       const { error } = apiError as IErrorResponse;
-      console.log("Error:", error);
+      toast.error(error);
     }
   };
 
