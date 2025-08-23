@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login.js";
 import SignupMultistep from "./components/Signup/SignupMultistep.js";
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Toaster />
     </UserProvider>
   );
 };
