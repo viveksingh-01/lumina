@@ -21,7 +21,10 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   const { user, setUser } = useAuth();
 
   useEffect(() => {
-    fetchAndStoreUserDetails();
+    const token = localStorage.getItem("auth_token");
+    if (token) {
+      fetchAndStoreUserDetails();
+    }
   }, []);
 
   /**
