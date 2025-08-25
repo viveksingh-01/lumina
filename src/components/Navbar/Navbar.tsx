@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
             <div
               ref={dropdownRef}
               onClick={handleLogout}
-              className="absolute w-32 top-12 right-4 lg:top-16 lg:right-8 z-10 px-4 py-2 text-center text-sm tracking-wide text-gray-700 hover:bg-gray-100 rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5"
+              className="absolute w-32 top-14 right-6 lg:top-16 lg:right-8 z-10 px-4 py-2 text-center text-sm tracking-wide text-gray-700 hover:bg-gray-100 hover:cursor-pointer rounded-md bg-white shadow-lg ring-1 ring-[#1b1c1d] ring-opacity-5"
             >
               Sign out
             </div>
