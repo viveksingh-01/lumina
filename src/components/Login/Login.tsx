@@ -30,7 +30,10 @@ const Login: React.FC = () => {
       navigate("/");
     } catch (err: unknown) {
       const apiError = (err as AxiosError).response?.data;
-      const { error } = apiError as IErrorResponse;
+      let error = "Something went wrong.\n Please try again after some time.";
+      if (apiError) {
+        error = (apiError as IErrorResponse)?.error;
+      }
       toast.error(error);
     }
   };

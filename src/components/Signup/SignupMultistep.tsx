@@ -2,6 +2,7 @@ import { AxiosError } from "axios";
 import { motion } from "framer-motion";
 import { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { createAccount } from "../../services/auth";
@@ -51,8 +52,11 @@ const SignupMultistep = () => {
       setSuccess(true);
     } catch (err: unknown) {
       const apiError = (err as AxiosError).response?.data;
-      const { error } = apiError as IErrorResponse;
-      console.log("Error:", error);
+      let error = "Something went wrong.\n Please try again after some time.";
+      if (apiError) {
+        error = (apiError as IErrorResponse)?.error;
+      }
+      toast.error(error);
     }
   };
 
