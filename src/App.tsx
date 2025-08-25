@@ -23,8 +23,6 @@ const App: React.FC = () => {
           style: {
             padding: "12px 16px",
             borderRadius: "8px",
-            fontSize: "15px",
-            letterSpacing: 0.25,
             color: "#1f2937", // Tailwind: text-gray-800
           },
           success: {
