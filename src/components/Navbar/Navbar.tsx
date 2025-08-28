@@ -33,6 +33,8 @@ const Navbar: React.FC = () => {
       localStorage.removeItem("auth_token");
     } catch (err) {
       console.error("Error:", err);
+    } finally {
+      window.location.reload();
     }
   };
 
