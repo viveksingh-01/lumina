@@ -79,7 +79,7 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
                     <span className="px-4 py-3 bg-[#444] text-white rounded-4xl rounded-br-sm">{item.text}</span>
                   </div>
                 ) : (
-                  <div className="content mb-8">
+                  <div className="content mb-8 p-4 bg-gray-50 rounded-lg">
                     <ReactMarkdown>{item.text}</ReactMarkdown>
                   </div>
                 )
