@@ -14,9 +14,13 @@ type MainProps = {
   setPromptHistory: any;
 };
 
+type content = {
+  text: string;
+  role: "user" | "lumina";
+};
+
 const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHistory }) => {
-  const [content, setContent] = useState<string>("");
-  const [promptToDisplay, setPromptToDisplay] = useState<string>("");
+  const [content, setContent] = useState<content[]>([]);
   const [showContent, setShowContent] = useState<boolean>(false);
   const { user, setUser } = useAuth();
 
@@ -43,14 +47,14 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   }
 
   async function generateContent(prompt: string) {
-    setPromptToDisplay(prompt);
+    setContent((prev) => [...prev, { text: prompt, role: "user" }]);
     setShowContent(true);
     const payload = {
       message: prompt,
       userId: user.email,
     };
     const response = await getResponse(payload);
-    setContent(response);
+    setContent((prev) => [...prev, { text: response, role: "lumina" }]);
   }
 
   function handleContentGeneration(prompt: string): void {
@@ -69,13 +73,17 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
         <section className="grow flex justify-center items-center overflow-y-auto">
           {showContent ? (
             <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">
-              <div className="flex justify-end">
-                <span className="p-4 bg-[#444] text-white rounded-4xl rounded-br-sm">{promptToDisplay}</span>
-              </div>
-              <br />
-              <div className="content">
-                <ReactMarkdown>{content}</ReactMarkdown>
-              </div>
+              {content.map((item) =>
+                item.role === "user" ? (
+                  <div className="flex justify-end mb-4">
+                    <span className="px-4 py-3 bg-[#444] text-white rounded-4xl rounded-br-sm">{item.text}</span>
+                  </div>
+                ) : (
+                  <div className="content mb-8">
+                    <ReactMarkdown>{item.text}</ReactMarkdown>
+                  </div>
+                )
+              )}
             </div>
           ) : (
             <div className="mx-auto text-3xl md:text-5xl font-bold text-center text-[#c4c7c5]">
