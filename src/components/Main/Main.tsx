@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useAuth } from "../../hooks/useAuth.js";
@@ -53,8 +54,13 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
       message: prompt,
       userId: user.email,
     };
-    const response = await getResponse(payload);
-    setContent((prev) => [...prev, { text: response, role: "lumina" }]);
+    try {
+      const response = await getResponse(payload);
+      setContent((prev) => [...prev, { text: response, role: "lumina" }]);
+    } catch (err: unknown) {
+      const error = err as AxiosError;
+      console.log(error);
+    }
   }
 
   function handleContentGeneration(prompt: string): void {
