@@ -6,7 +6,7 @@ interface ILoginAlertProps {
 const LoginAlert: React.FC<ILoginAlertProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-100/50 backdrop-blur-md z-50">
       <div className="relative bg-white rounded-lg shadow-lg p-6 w-[360px]">
         <button
           onClick={onClose}
