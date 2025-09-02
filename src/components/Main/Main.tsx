@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/useAuth.js";
 import { getUserDetails } from "../../services/auth.js";
 import { getResponse } from "../../services/chat-service.js";
 import { IUserDetailsResponse } from "../../types/response.js";
+import LoginAlert from "../LoginAlert/LoginAlert.js";
 import Navbar from "../Navbar/Navbar.js";
 import PromptInput from "../PromptInput/PromptInput.jsx";
 import "./Main.css";
@@ -24,6 +25,10 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   const [content, setContent] = useState<content[]>([]);
   const [showContent, setShowContent] = useState<boolean>(false);
   const { user, setUser } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     const token = localStorage.getItem("auth_token");
@@ -59,7 +64,9 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
       setContent((prev) => [...prev, { text: response, role: "lumina" }]);
     } catch (err: unknown) {
       const error = err as AxiosError;
-      console.log(error);
+      if (error?.status === 401) {
+        handleOpenModal();
+      }
     }
   }
 
@@ -102,6 +109,7 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
         </section>
         <PromptInput handleContentGeneration={handleContentGeneration} promptHistory={promptHistory} />
       </div>
+      <LoginAlert isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 };
