@@ -1,10 +1,11 @@
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import { useAuth } from "../../hooks/useAuth.js";
 import { getUserDetails } from "../../services/auth.js";
 import { getResponse } from "../../services/chat-service.js";
-import { IUserDetailsResponse } from "../../types/response.js";
+import { IErrorResponse, IUserDetailsResponse } from "../../types/response.js";
 import LoginAlert from "../LoginAlert/LoginAlert.js";
 import Navbar from "../Navbar/Navbar.js";
 import PromptInput from "../PromptInput/PromptInput.jsx";
@@ -66,6 +67,13 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
       const error = err as AxiosError;
       if (error?.status === 401) {
         handleOpenModal();
+      } else {
+        const apiError = error?.response?.data;
+        let errorMessage = "Something went wrong.\n Please try again after some time.";
+        if (apiError) {
+          errorMessage = (apiError as IErrorResponse)?.error;
+        }
+        toast(errorMessage);
       }
     }
   }
