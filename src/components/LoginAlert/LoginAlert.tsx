@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 interface ILoginAlertProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 const LoginAlert: React.FC<ILoginAlertProps> = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
+
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-100/50 backdrop-blur-md z-50">
@@ -21,7 +25,7 @@ const LoginAlert: React.FC<ILoginAlertProps> = ({ isOpen, onClose }) => {
 
         <div className="flex justify-center">
           <button
-            onClick={() => alert("Login Alert!")}
+            onClick={() => navigate("/auth/log-in")}
             className="mb-2 py-3 px-8 rounded-full text-sm tracking-wide text-gray-50 bg-gray-900 hover:bg-gray-800 hover:cursor-pointer transition"
           >
             Login
