@@ -9,6 +9,7 @@ import { IErrorResponse, IUserDetailsResponse } from "../../types/response.js";
 import LoginAlert from "../LoginAlert/LoginAlert.js";
 import Navbar from "../Navbar/Navbar.js";
 import PromptInput from "../PromptInput/PromptInput.jsx";
+import Shimmer from "../Shimmer/Shimmer.js";
 import "./Main.css";
 
 type MainProps = {
@@ -23,9 +24,10 @@ type content = {
 };
 
 const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHistory }) => {
-  const [content, setContent] = useState<content[]>([]);
-  const [showContent, setShowContent] = useState<boolean>(false);
   const { user, setUser } = useAuth();
+  const [content, setContent] = useState<content[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [showContent, setShowContent] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => setIsModalOpen(true);
@@ -56,6 +58,7 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   async function generateContent(prompt: string) {
     setContent((prev) => [...prev, { text: prompt, role: "user" }]);
     setShowContent(true);
+    setIsLoading(true);
     const payload = {
       message: prompt,
       userId: user.email,
@@ -75,6 +78,8 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
         }
         toast(errorMessage);
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -99,6 +104,8 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
                   <div className="flex justify-end mb-4">
                     <span className="px-4 py-3 bg-[#444] text-white rounded-4xl rounded-br-sm">{item.text}</span>
                   </div>
+                ) : isLoading ? (
+                  <Shimmer />
                 ) : (
                   <div className="content mb-8 p-4 bg-gray-50 rounded-lg">
                     <ReactMarkdown>{item.text}</ReactMarkdown>
