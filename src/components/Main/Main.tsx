@@ -56,7 +56,7 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   }
 
   async function generateContent(prompt: string) {
-    setContent((prev) => [...prev, { text: prompt, role: "user" }]);
+    setContent((prev) => [...prev, { text: prompt, role: "user" }, { text: "", role: "lumina" }]);
     setShowContent(true);
     setIsLoading(true);
     const payload = {
@@ -65,7 +65,15 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
     };
     try {
       const response = await getResponse(payload);
-      setContent((prev) => [...prev, { text: response, role: "lumina" }]);
+      setContent((prev) => {
+        const lastIndex = prev.length - 1;
+        const newItems = [...prev];
+        newItems[lastIndex] = {
+          ...prev[lastIndex],
+          text: response,
+        };
+        return newItems;
+      });
     } catch (err: unknown) {
       const error = err as AxiosError;
       if (error?.status === 401) {
