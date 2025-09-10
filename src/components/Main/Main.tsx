@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import { useAuth } from "../../hooks/useAuth.js";
@@ -30,6 +30,8 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
   const [showContent, setShowContent] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
@@ -39,6 +41,11 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
       fetchAndStoreUserDetails();
     }
   }, []);
+
+  useEffect(() => {
+    // Scroll to bottom whenever content change
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [content]);
 
   /**
    * Generates content based on the currentPrompt (prop passed from App component)
@@ -113,7 +120,10 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
                     <span className="px-4 py-3 bg-[#444] text-white rounded-4xl rounded-br-sm">{item.text}</span>
                   </div>
                 ) : index === content.length - 1 && isLoading ? (
-                  <Shimmer />
+                  <>
+                    <Shimmer />
+                    <div ref={bottomRef} />
+                  </>
                 ) : (
                   <div className="content mb-8 p-4 bg-gray-50 rounded-lg">
                     <ReactMarkdown>{item.text}</ReactMarkdown>
