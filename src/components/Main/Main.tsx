@@ -107,12 +107,12 @@ const Main: React.FC<MainProps> = ({ currentPrompt, promptHistory, setPromptHist
         <section className="grow flex justify-center items-center overflow-y-auto">
           {showContent ? (
             <div className="py-4 text-[#333] w-[800px] h-full overflow-scroll">
-              {content.map((item) =>
+              {content.map((item, index) =>
                 item.role === "user" ? (
                   <div className="flex justify-end mb-4">
                     <span className="px-4 py-3 bg-[#444] text-white rounded-4xl rounded-br-sm">{item.text}</span>
                   </div>
-                ) : isLoading ? (
+                ) : index === content.length - 1 && isLoading ? (
                   <Shimmer />
                 ) : (
                   <div className="content mb-8 p-4 bg-gray-50 rounded-lg">
