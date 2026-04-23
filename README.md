@@ -1,1 +1,1 @@
-Generative AI chat application, built using React and Google's Gemini API.
+Generative AI chat application, built using React, Google's Gemini API and TailwindCSS.
